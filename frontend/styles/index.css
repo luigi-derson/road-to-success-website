@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  background-color: theme('colors.black');
+  font-family: theme('fontFamily.body');
+  color: theme('colors.white');
+}
+
+.grayscale {
+  filter: grayscale(1);
+}
