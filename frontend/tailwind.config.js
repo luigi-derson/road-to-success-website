@@ -1,5 +1,8 @@
 module.exports = {
   purge: ['./components/**/*.js', './pages/**/*.js'],
+  variants: {
+    opacity: ['group-hover'],
+  },
   theme: {
     extend: {
       fontFamily: {
@@ -23,6 +26,10 @@ module.exports = {
       },
       spacing: {
         28: '7rem',
+        'blog-card': '21rem',
+      },
+      height: {
+        section: '600px',
       },
       letterSpacing: {
         tighter: '-.04em',

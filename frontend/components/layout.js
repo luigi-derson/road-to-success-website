@@ -1,16 +1,14 @@
-import Alert from './alert'
-import Footer from './footer'
-import Meta from './meta'
+import Navigation from './Navigation'
+import Footer from './Footer'
 
-export default function Layout({ preview, children }) {
+const Layout = ({ children }) => {
   return (
     <>
-      <Meta />
-      <div className="min-h-screen">
-        <Alert preview={preview} />
-        <main>{children}</main>
-      </div>
+      <Navigation />
+      <main>{children}</main>
       <Footer />
     </>
   )
 }
+
+export default Layout

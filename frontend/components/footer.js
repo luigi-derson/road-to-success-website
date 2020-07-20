@@ -1,30 +1,88 @@
-import Container from './container'
-import { EXAMPLE_PATH } from '@/lib/constants'
+import { useContext } from 'react'
+import GlobalContext from '@/components/context/GlobalContext'
 
-export default function Footer() {
+const Footer = () => {
+  const { footer } = useContext(GlobalContext)
+  // const { copyright_en, pages, socials } = footer;
+  let copyright_en = 'copyright'
   return (
-    <footer className="bg-accent-1 border-t border-accent-2">
-      <Container>
-        <div className="py-28 flex flex-col lg:flex-row items-center">
-          <h3 className="text-4xl lg:text-5xl font-bold tracking-tighter leading-tight text-center lg:text-left mb-10 lg:mb-0 lg:pr-4 lg:w-1/2">
-            Statically Generated with Next.js.
-          </h3>
-          <div className="flex flex-col lg:flex-row justify-center items-center lg:pl-4 lg:w-1/2">
-            <a
-              href="https://nextjs.org/docs/basic-features/pages"
-              className="mx-3 bg-black hover:bg-white hover:text-black border border-black text-white font-bold py-3 px-12 lg:px-8 duration-200 transition-colors mb-6 lg:mb-0"
+    <footer className="h-48 bg-gray-4">
+      <div className="container mx-auto px-8 flex flex-col justify-end h-full">
+        <div className="flex justify-between my-4">
+          <div>
+            <svg
+              width="32"
+              height="20"
+              viewBox="0 0 32 20"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
             >
-              Read Documentation
-            </a>
-            <a
-              href={`https://github.com/zeit/next.js/tree/canary/examples/${EXAMPLE_PATH}`}
-              className="mx-3 font-bold hover:underline"
-            >
-              View on GitHub
-            </a>
+              <path
+                fillRule="evenodd"
+                clipRule="evenodd"
+                d="M31.3559 4.12762L23.7937 4.14925L23.7941 4.14422C23.7625 4.14534 23.7308 4.14605 23.6998 4.14605C23.0725 4.14605 22.5672 4.26088 22.1837 4.49012C21.8003 4.71977 21.5858 5.05442 21.5402 5.4948C21.4964 5.91714 21.6164 6.27023 21.9009 6.55453C22.1848 6.83915 22.5486 7.0684 22.9918 7.24259C23.4347 7.41717 24.0941 7.64171 24.9696 7.91692C26.2761 8.30224 27.3479 8.68756 28.1844 9.07296C29.0203 9.45821 29.7111 10.05 30.2558 10.8482C30.8 11.6465 31.006 12.688 30.8731 13.9722C30.7401 15.2569 30.2851 16.3531 29.5088 17.2615C28.7319 18.1697 27.7251 18.8535 26.4877 19.3119C25.2504 19.7704 23.9029 20 22.4457 20C20.8408 20 19.2692 19.7201 17.7317 19.1606C16.1938 18.6011 12.1809 16.1832 11.1194 15.2104L15.5081 12.0984C15.5081 12.0984 17.9885 15.9912 22.9285 15.8715C23.6845 15.8531 24.2939 15.7339 24.7561 15.4585C25.2177 15.1833 25.4766 14.7799 25.5318 14.2476C25.5773 13.8072 25.4537 13.4403 25.1615 13.1465C24.8688 12.8532 24.4871 12.6193 24.0166 12.4447C23.5457 12.2704 22.88 12.064 22.0193 11.8253C20.729 11.4585 19.6698 11.0869 18.8418 10.7106C18.0134 10.3347 17.3299 9.76581 16.791 9.0041C16.2514 8.24295 16.0477 7.22886 16.1788 5.96271C16.3024 4.77012 16.7288 3.72419 17.4585 2.82492C18.1879 1.92613 19.1633 1.23328 20.3853 0.746864C21.5198 0.295555 22.7961 0.0537815 24.2134 0.0215454L24.2157 0H31.8719L31.3559 4.12762Z"
+                fill="white"
+              />
+              <path
+                fillRule="evenodd"
+                clipRule="evenodd"
+                d="M31.3559 4.12768L23.7937 4.1493L23.7941 4.14419C23.7625 4.14539 23.7308 4.14603 23.6998 4.14603C23.0725 4.14603 22.5672 4.26093 22.1838 4.49018C21.8003 4.71982 21.5858 5.0544 21.5402 5.49477C21.4964 5.91712 21.6164 6.27028 21.9009 6.55451C22.0422 6.69614 22.2032 6.82397 22.384 6.93823C21.8484 6.70181 17.6465 4.74464 18.5159 1.89905C18.5306 1.8511 18.5475 1.80354 18.5667 1.75654C19.096 1.3555 19.702 1.01886 20.3853 0.746921C21.5198 0.295611 22.7961 0.0537577 24.2135 0.0215211L24.2157 5.72205e-05H31.8719L31.3559 4.12768Z"
+                fill="white"
+              />
+              <path
+                fillRule="evenodd"
+                clipRule="evenodd"
+                d="M17.7696 2.4441C18.168 3.24331 18.8279 5.198 18.0008 8.408C17.7741 9.2882 17.5385 9.629 17.307 9.61312C17.1201 9.41986 16.9445 9.21176 16.7835 8.98411C16.7654 8.95857 16.7486 8.93192 16.7311 8.90575C16.5161 8.41359 16.3161 7.72066 16.1444 7.00986C16.1237 6.67649 16.1322 6.32109 16.1715 5.94271C16.295 4.7502 16.7215 3.70427 17.451 2.805C17.5521 2.68037 17.659 2.56076 17.7696 2.4441ZM13.1335 13.7569L14.2668 12.9534L17.4077 19.0146C16.3483 18.5625 14.5709 17.5549 13.1335 16.6362V13.7569Z"
+                fill="white"
+              />
+              <path
+                d="M13.6521 7.25146C13.5385 8.35308 13.0973 9.20774 12.3291 9.81529C11.5603 10.4232 10.4981 10.7268 9.14254 10.7268H5.46503L6.1815 3.77606H9.85916C11.2147 3.77606 12.2147 4.07521 12.8591 4.67342C13.5032 5.27163 13.7676 6.13108 13.6521 7.25146ZM17.2736 19.9566L13.5603 13.5471C14.9006 12.9773 15.9744 12.1561 16.7815 11.083C17.5886 10.0103 18.0684 8.73274 18.2212 7.25146C18.3739 5.77017 18.1621 4.4883 17.5869 3.40574C17.011 2.32327 16.1173 1.48776 14.906 0.898882C13.6942 0.310488 12.2249 0.01581 10.4975 0.01581H2.05579L0 19.9566H4.5135L5.0861 14.4017H9.01447H9.23734L12.426 19.9566H17.2736Z"
+                fill="white"
+              />
+              <path
+                fillRule="evenodd"
+                clipRule="evenodd"
+                d="M18.2218 7.25146C18.0691 8.73274 17.5892 10.0103 16.7821 11.083C15.975 12.1561 14.9012 12.9773 13.5608 13.5471L17.2743 19.9566H12.4266L9.23797 14.4017H9.01511H5.08673L5.46559 10.7268H9.14318C10.2928 10.7268 11.2305 10.5077 11.958 10.0705C17.5539 9.09221 17.7926 5.20085 17.5922 3.41516C17.7027 3.6239 17.7993 3.84022 17.8827 4.06364C18.0443 4.74747 18.1716 5.47239 18.2682 6.22643C18.2733 6.55686 18.2583 6.89837 18.2218 7.25146Z"
+                fill="white"
+              />
+              <path
+                opacity="0.699997"
+                fillRule="evenodd"
+                clipRule="evenodd"
+                d="M5.46701 10.7206H9.15808C9.25183 10.7206 9.34391 10.7188 9.43496 10.7159L8.95325 14.4089H5.08679L5.46701 10.7206Z"
+                fill="white"
+              />
+            </svg>
+          </div>
+          <div className="flex items-center">
+            {[].map(({ name, url, logo }) => {
+              return (
+                <a key={name} href={url}>
+                  <img
+                    src={process.env.NEXT_PUBLIC_STRAPI_API_URL + logo.url}
+                    alt="RRSS Logo"
+                  />
+                </a>
+              )
+            })}
           </div>
         </div>
-      </Container>
+        <div className="flex text-sm my-4">
+          <div className="flex-auto w-auto">{copyright_en}</div>
+          <div>
+            <ul>
+              <li className="inline-block px-4 first:pl-0">
+                <a href="#">Noticia Legal</a>
+              </li>
+              <li className="inline-block pl-4 first:pl-0">
+                <a href="#">Politica de Privacidad</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
     </footer>
   )
 }
+
+export default Footer
