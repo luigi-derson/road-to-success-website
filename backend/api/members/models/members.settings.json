@@ -27,9 +27,6 @@
       "plugin": "upload",
       "required": true
     },
-    "achievements": {
-      "type": "text"
-    },
     "experience": {
       "type": "text"
     },
@@ -40,6 +37,11 @@
         "inactive"
       ],
       "required": true
+    },
+    "achievements": {
+      "type": "component",
+      "repeatable": true,
+      "component": "items.achievements"
     }
   }
 }

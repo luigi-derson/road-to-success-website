@@ -1,0 +1,13 @@
+{
+  "collectionName": "components_items_achievements",
+  "info": {
+    "name": "achievements",
+    "icon": "trophy"
+  },
+  "options": {},
+  "attributes": {
+    "achievement": {
+      "type": "string"
+    }
+  }
+}

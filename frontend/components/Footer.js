@@ -1,10 +1,11 @@
 import { useContext } from 'react'
+import Link from 'next/link'
+
 import GlobalContext from '@/components/context/GlobalContext'
 
 const Footer = () => {
   const { footer } = useContext(GlobalContext)
-  // const { copyright_en, pages, socials } = footer;
-  let copyright_en = 'copyright'
+
   return (
     <footer className="h-48 bg-gray-4">
       <div className="container mx-auto px-8 flex flex-col justify-end h-full">
@@ -55,12 +56,12 @@ const Footer = () => {
             </svg>
           </div>
           <div className="flex items-center">
-            {[].map(({ name, url, logo }) => {
+            {footer.socials.map(({ id, name, url, logo }) => {
               return (
-                <a key={name} href={url}>
+                <a key={id} href={url} className="px-3">
                   <img
                     src={process.env.NEXT_PUBLIC_STRAPI_API_URL + logo.url}
-                    alt="RRSS Logo"
+                    alt={name}
                   />
                 </a>
               )
@@ -68,15 +69,16 @@ const Footer = () => {
           </div>
         </div>
         <div className="flex text-sm my-4">
-          <div className="flex-auto w-auto">{copyright_en}</div>
+          <div className="flex-auto w-auto">{footer.copyright}</div>
           <div>
             <ul>
-              <li className="inline-block px-4 first:pl-0">
-                <a href="#">Noticia Legal</a>
-              </li>
-              <li className="inline-block pl-4 first:pl-0">
-                <a href="#">Politica de Privacidad</a>
-              </li>
+              {footer.pages.map(({ id, name, slug }) => (
+                <li key={id} className="inline-block px-4 first:pl-0">
+                  <Link href={`/${slug}`}>
+                    <a>{name}</a>
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
         </div>

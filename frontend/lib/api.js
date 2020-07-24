@@ -1,3 +1,5 @@
+import markdownToHtml from '@/lib/markdownToHtml'
+
 async function fetchAPI(query, { variables } = {}) {
   const res = await fetch(`${process.env.NEXT_PUBLIC_STRAPI_API_URL}/graphql`, {
     method: 'POST',
@@ -19,10 +21,72 @@ async function fetchAPI(query, { variables } = {}) {
   return json.data
 }
 
-export async function getNavigationContent() {
+export async function getLayoutContent() {
+  const { navigation } = await fetchAPI(`{
+    navigation {
+      pages {
+        id,
+        name,
+        slug
+      }
+    }
+  }`)
+
+  const { footer } = await fetchAPI(`{
+    footer {
+      copyright,
+      socials {
+        id,
+        name,
+        logo {
+          url
+        },
+        url
+      },
+      pages {
+        id,
+        name,
+        slug
+      }
+    }
+  }`)
+
+  return {
+    navigation,
+    footer,
+  }
+}
+
+export async function getAllMembers() {
   const data = await fetchAPI(`{
-    navigations {
-      main
+    members {
+      id,
+      name,
+      role,
+      achievements {
+        id,
+        achievement
+      },
+      experience,
+      picture {
+        url,
+        alternativeText
+      }
+    }
+  }`)
+
+  return data
+}
+
+export async function getAllServices() {
+  const data = await fetchAPI(`{
+    services {
+      id,
+      name,
+      image {
+        url
+      },
+      description,
     }
   }`)
 
@@ -47,6 +111,26 @@ export async function getPreviewPostBySlug(slug) {
     }
   )
   return data?.posts[0]
+}
+
+export async function getAllPosts() {
+  const data = await fetchAPI(`
+  {
+    posts {
+      id,
+      title,
+      content,
+      slug,
+      excerpt,
+      image {
+        url
+      },
+      date,
+      status
+    }
+  }`)
+
+  return data
 }
 
 export async function getAllPostsWithSlug() {

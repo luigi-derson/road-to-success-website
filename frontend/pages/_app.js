@@ -1,10 +1,11 @@
 import '@/styles/index.css'
 import GlobalContext from '@/components/context/GlobalContext'
 import Layout from '@/components/Layout'
+import { getLayoutContent } from '@/lib/api'
 
-function MyApp({ Component, pageProps }) {
+function MyApp({ Component, pageProps, layoutData }) {
   return (
-    <GlobalContext.Provider value={{}}>
+    <GlobalContext.Provider value={layoutData}>
       <Layout>
         <Component {...pageProps} />
       </Layout>
@@ -17,7 +18,9 @@ MyApp.getInitialProps = async ({ Component, ctx }) => {
   if (Component.getInitialProps) {
     pageProps = await Component.getInitialProps(ctx)
   }
-  return { pageProps }
+  const layoutData = await getLayoutContent()
+  console.log(layoutData)
+  return { pageProps, layoutData }
 }
 
 export default MyApp

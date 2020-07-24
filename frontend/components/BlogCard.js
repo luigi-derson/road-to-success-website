@@ -1,21 +1,26 @@
-import React from 'react'
+import Link from 'next/link'
+import { parseUrl } from '@/lib/helpers'
 
-const BlogCard = ({ href, image, title, excerpt, date }) => {
+const BlogCard = ({ slug, image, title, excerpt, date }) => {
+  const imageUrl = parseUrl(image.url)
+
   return (
-    <a className="inline-block" href={href}>
-      <div className="w-full md:w-blog-card border border-gray-3 hover:border-primary">
-        <img
-          className="w-full object-cover h-48"
-          src={image.url}
-          alt={image.alt}
-        />
-        <div className="p-4">
-          <span className="text-xs text-gray-2">{date}</span>
-          <h2 className="py-4 text-lg font-display">{title}</h2>
-          <p className="text-sm text-gray-2">{excerpt}</p>
+    <Link as={`/posts/${slug}`} href="/posts/[slug]">
+      <a className="inline-block">
+        <div className="w-full md:w-blog-card border border-gray-3 hover:border-primary">
+          <img
+            className="w-full object-cover h-48"
+            src={imageUrl}
+            alt={image.alternativeText}
+          />
+          <div className="p-4">
+            <span className="text-xs text-gray-2">{date}</span>
+            <h2 className="py-4 text-lg font-display">{title}</h2>
+            <p className="text-sm text-gray-2">{excerpt}</p>
+          </div>
         </div>
-      </div>
-    </a>
+      </a>
+    </Link>
   )
 }
 

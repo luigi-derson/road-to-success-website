@@ -1,0 +1,23 @@
+{
+  "kind": "singleType",
+  "collectionName": "footers",
+  "info": {
+    "name": "Footer"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true
+  },
+  "attributes": {
+    "copyright": {
+      "type": "text",
+      "required": true
+    },
+    "pages": {
+      "collection": "pages"
+    },
+    "socials": {
+      "collection": "social"
+    }
+  }
+}

@@ -1,13 +1,15 @@
 import Section from '@/components/Section'
+import MemberCard from '@/components/MemberCard'
+import { getAllMembers } from '@/lib/api'
 
-const about = () => {
+const about = ({ members }) => {
   return (
     <div>
       <Section
-        sectionStyle="bg-no-repeat bg-cover h-screen flex items-end justify-start"
-        backgroundImage="http://localhost:1337/uploads/hero_about_6d14e2f26b.png"
+        sectionStyle="bg-no-repeat bg-cover h-screen flex items-end"
+        backgroundImage="/uploads/team_hero_2fe8ab7431.jpeg"
       >
-        <div className="h-full">
+        <div className="h-full pb-32 ">
           <h1 className="text-5xl font-bold font-display mb-4">Who we are</h1>
           <p className="max-w-xl">
             Road To Success is a successful coaching and management company
@@ -21,8 +23,32 @@ const about = () => {
           </p>
         </div>
       </Section>
+
+      <Section title="Team">
+        {members.map(
+          ({ id, name, role, achievements, experience, picture }) => (
+            <MemberCard
+              key={id}
+              name={name}
+              role={role}
+              achievements={achievements}
+              experience={experience}
+              picture={picture}
+            />
+          )
+        )}
+      </Section>
     </div>
   )
+}
+
+export const getStaticProps = async () => {
+  const res = await getAllMembers()
+  return {
+    props: {
+      members: res.members,
+    },
+  }
 }
 
 export default about

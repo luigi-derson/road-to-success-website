@@ -1,12 +1,14 @@
 import React from 'react'
+import { parseUrl } from '@/lib/helpers'
 
 const MemberCard = ({ picture, name, role, achievements, experience }) => {
+  const imageUrl = parseUrl(picture.url)
   return (
     <div className="w-full md:w-56 overflow-hidden bg-gray-4">
       <img
         className="w-full object-cover h-56"
-        src={picture.url}
-        alt={picture.alt}
+        src={imageUrl}
+        alt={picture.alternativeText}
       />
       <div className="p-4 text-whiter text-sm">
         <div>
@@ -19,8 +21,8 @@ const MemberCard = ({ picture, name, role, achievements, experience }) => {
             Sports career and greatest achievements:
           </span>
           <ul>
-            {achievements.map((t, i) => (
-              <li key={i}>{t}</li>
+            {achievements.map(({ id, achievement }) => (
+              <li key={id}>• {achievement}</li>
             ))}
           </ul>
         </div>
