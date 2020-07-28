@@ -2,17 +2,19 @@ import React from 'react'
 import ServiceSection from '@/components/ServiceSection'
 import { getAllServices } from '@/lib/api'
 import markdownToHtml from '@/lib/markdownToHtml'
+import { parseUrl } from '@/lib/helpers'
 
 const services = ({ services }) => {
   return (
     <div>
-      {services.map(({ id, name, description, image }) => {
+      {services.map(({ id, name, description, image }, index) => {
         return (
           <ServiceSection
+            index={index + 1}
             key={id}
             name={name}
             description={description}
-            backgroundImage={image.url}
+            backgroundImage={parseUrl(image.url)}
           />
         )
       })}

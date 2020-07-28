@@ -1,5 +1,5 @@
 .markdown {
-  @apply text-lg leading-relaxed;
+  @apply text-lg leading-relaxed relative py-10;
 }
 
 .markdown p,
@@ -7,6 +7,14 @@
 .markdown ol,
 .markdown blockquote {
   @apply my-6;
+}
+
+.markdown p:first-child {
+  @apply mt-0;
+}
+
+.markdown h1 {
+  @apply text-4xl mt-2 mb-4 leading-snug;
 }
 
 .markdown h2 {

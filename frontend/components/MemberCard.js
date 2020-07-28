@@ -4,7 +4,7 @@ import { parseUrl } from '@/lib/helpers'
 const MemberCard = ({ picture, name, role, achievements, experience }) => {
   const imageUrl = parseUrl(picture.url)
   return (
-    <div className="w-full md:w-56 overflow-hidden bg-gray-4">
+    <div className="w-full md:w-56 overflow-hidden bg-gray-4 m-2">
       <img
         className="w-full object-cover h-56"
         src={imageUrl}

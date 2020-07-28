@@ -1,8 +1,8 @@
 {
   "kind": "collectionType",
-  "collectionName": "sponsors",
+  "collectionName": "drivers",
   "info": {
-    "name": "Sponsors"
+    "name": "drivers"
   },
   "options": {
     "increments": true,
@@ -11,30 +11,20 @@
   "attributes": {
     "name": {
       "type": "string",
-      "required": true,
-      "unique": true
+      "required": true
     },
-    "logo": {
+    "portrait": {
       "model": "file",
       "via": "related",
       "allowedTypes": [
-        "files",
-        "images",
-        "videos"
+        "images"
       ],
       "plugin": "upload",
       "required": true
     },
-    "status": {
-      "type": "enumeration",
-      "enum": [
-        "active",
-        "inactive"
-      ],
+    "active": {
+      "type": "boolean",
       "required": true
-    },
-    "website": {
-      "type": "string"
     }
   }
 }

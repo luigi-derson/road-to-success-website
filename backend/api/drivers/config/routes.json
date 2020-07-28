@@ -2,48 +2,48 @@
   "routes": [
     {
       "method": "GET",
-      "path": "/galleries",
-      "handler": "gallery.find",
+      "path": "/drivers",
+      "handler": "drivers.find",
       "config": {
         "policies": []
       }
     },
     {
       "method": "GET",
-      "path": "/galleries/count",
-      "handler": "gallery.count",
+      "path": "/drivers/count",
+      "handler": "drivers.count",
       "config": {
         "policies": []
       }
     },
     {
       "method": "GET",
-      "path": "/galleries/:id",
-      "handler": "gallery.findOne",
+      "path": "/drivers/:id",
+      "handler": "drivers.findOne",
       "config": {
         "policies": []
       }
     },
     {
       "method": "POST",
-      "path": "/galleries",
-      "handler": "gallery.create",
+      "path": "/drivers",
+      "handler": "drivers.create",
       "config": {
         "policies": []
       }
     },
     {
       "method": "PUT",
-      "path": "/galleries/:id",
-      "handler": "gallery.update",
+      "path": "/drivers/:id",
+      "handler": "drivers.update",
       "config": {
         "policies": []
       }
     },
     {
       "method": "DELETE",
-      "path": "/galleries/:id",
-      "handler": "gallery.delete",
+      "path": "/drivers/:id",
+      "handler": "drivers.delete",
       "config": {
         "policies": []
       }

@@ -2,6 +2,8 @@ import { useState, useCallback } from 'react'
 import Carousel, { Modal, ModalGateway } from 'react-images'
 import Gallery from 'react-photo-gallery'
 
+import Container from '@/components/Container'
+
 const photos = [
   {
     src: 'https://source.unsplash.com/2ShvY8Lf6l0/800x599',
@@ -65,7 +67,7 @@ const media = () => {
   }
   return (
     <div className="py-16 h-screen">
-      <div className="container mx-auto px-8">
+      <Container>
         <Gallery photos={photos} margin={4} onClick={openLightbox} />
         <ModalGateway>
           {viewerIsOpen ? (
@@ -81,7 +83,7 @@ const media = () => {
             </Modal>
           ) : null}
         </ModalGateway>
-      </div>
+      </Container>
     </div>
   )
 }

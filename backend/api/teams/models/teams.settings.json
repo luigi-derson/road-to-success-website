@@ -1,31 +1,30 @@
 {
   "kind": "collectionType",
-  "collectionName": "galleries",
+  "collectionName": "teams",
   "info": {
-    "name": "Gallery"
+    "name": "teams"
   },
   "options": {
     "increments": true,
     "timestamps": true
   },
   "attributes": {
-    "title": {
+    "name": {
       "type": "string",
-      "unique": false
+      "required": true,
+      "unique": true
     },
-    "image": {
+    "logo": {
       "model": "file",
       "via": "related",
       "allowedTypes": [
-        "files",
-        "images",
-        "videos"
+        "images"
       ],
       "plugin": "upload",
       "required": true
     },
-    "date": {
-      "type": "date"
+    "active": {
+      "type": "boolean"
     }
   }
 }

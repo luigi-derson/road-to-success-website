@@ -1,5 +1,3 @@
-import markdownToHtml from '@/lib/markdownToHtml'
-
 async function fetchAPI(query, { variables } = {}) {
   const res = await fetch(`${process.env.NEXT_PUBLIC_STRAPI_API_URL}/graphql`, {
     method: 'POST',
@@ -93,6 +91,21 @@ export async function getAllServices() {
   return data
 }
 
+export async function getAllSponsors() {
+  const { sponsors } = await fetchAPI(`{
+    sponsors {
+      id,
+      logo {
+        url
+      },
+      name,
+      website,
+    }
+  }`)
+
+  return sponsors
+}
+
 export async function getPreviewPostBySlug(slug) {
   const data = await fetchAPI(
     `
@@ -113,26 +126,6 @@ export async function getPreviewPostBySlug(slug) {
   return data?.posts[0]
 }
 
-export async function getAllPosts() {
-  const data = await fetchAPI(`
-  {
-    posts {
-      id,
-      title,
-      content,
-      slug,
-      excerpt,
-      image {
-        url
-      },
-      date,
-      status
-    }
-  }`)
-
-  return data
-}
-
 export async function getAllPostsWithSlug() {
   const data = await fetchAPI(`
     {
@@ -149,19 +142,14 @@ export async function getAllPostsForHome(preview) {
   const data = await fetchAPI(
     `
     query Posts($where: JSON){
-      posts(sort: "date:desc", limit: 10, where: $where) {
+      posts(sort: "date:desc", limit: 3, where: $where) {
+        id,
         title
         slug
         excerpt
         date
-        coverImage {
+        image {
           url
-        }
-        author {
-          name
-          picture {
-            url
-          }
         }
       }
     }
@@ -177,6 +165,56 @@ export async function getAllPostsForHome(preview) {
   return data?.posts
 }
 
+export async function getAllDrivers() {
+  const data = await fetchAPI(
+    `
+    query Drivers($where: JSON){
+      drivers(where: $where) {
+        id,
+        name
+        portrait {
+          url
+        }
+      }
+     }
+  `,
+    {
+      variables: {
+        where: {
+          active: true,
+        },
+      },
+    }
+  )
+
+  return data?.drivers
+}
+
+export async function getAllTeams() {
+  const data = await fetchAPI(
+    `
+    query Teams($where: JSON){
+      teams(where: $where) {
+        id,
+        name
+        logo {
+          url
+        }
+      }
+     }
+  `,
+    {
+      variables: {
+        where: {
+          active: true,
+        },
+      },
+    }
+  )
+
+  return data?.teams
+}
+
 export async function getPostAndMorePosts(slug, preview) {
   const data = await fetchAPI(
     `
@@ -186,17 +224,11 @@ export async function getPostAndMorePosts(slug, preview) {
       slug
       content
       date
-      ogImage: coverImage{
+      ogImage: image{
         url
       }
-      coverImage {
+      image {
         url
-      }
-      author {
-        name
-        picture {
-          url
-        }
       }
     }
 
@@ -205,14 +237,8 @@ export async function getPostAndMorePosts(slug, preview) {
       slug
       excerpt
       date
-      coverImage {
+      image {
         url
-      }
-      author {
-        name
-        picture {
-          url
-        }
       }
     }
   }

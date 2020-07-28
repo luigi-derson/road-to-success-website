@@ -1,10 +1,20 @@
-import { getAllPosts } from '@/lib/api.js'
+import { useEffect } from 'react'
+import AOS from 'aos'
+
+import { getAllSponsors, getAllPostsForHome } from '@/lib/api.js'
 
 import Section from '@/components/Section'
 import BlogCard from '@/components/BlogCard'
 import InstaCard from '@/components/InstaCard'
+import { parseUrl } from '@/lib/helpers'
 
-const Index = ({ posts }) => {
+const Index = ({ posts, sponsors }) => {
+  useEffect(() => {
+    AOS.init({
+      duration: 1000,
+      once: true,
+    })
+  }, [])
   return (
     <>
       <Section
@@ -13,23 +23,25 @@ const Index = ({ posts }) => {
       >
         <div className="h-full text-center align-middle font-display uppercase">
           <h1 className="text-7xl font-bold">Road To Success</h1>
-          <h2 className="text-xl">Pagina Oficial</h2>
+          <h2 className="text-xl">Official Website</h2>
         </div>
       </Section>
-      <Section title="Ultimas Noticias">
-        {posts.map(({ id, image, slug, title, excerpt, date }) => (
-          <BlogCard
-            key={id}
-            slug={slug}
-            image={image}
-            title={title}
-            excerpt={excerpt}
-            date={date}
-          />
-        ))}
+      <Section title="Latest News">
+        <div className="flex justify-between flex-wrap" data-aos="fade-up">
+          {posts.map(({ id, image, slug, title, excerpt, date }) => (
+            <BlogCard
+              key={id}
+              slug={slug}
+              image={image}
+              title={title}
+              excerpt={excerpt}
+              date={date}
+            />
+          ))}
+        </div>
       </Section>
 
-      <Section title="Ultimos Posts" sectionStyle="bg-primary">
+      <Section title="Latest Posts" sectionStyle="bg-primary">
         <InstaCard
           href="/test/"
           picture={{
@@ -42,19 +54,32 @@ const Index = ({ posts }) => {
         />
       </Section>
 
-      <Section title="Sponsors"></Section>
+      <Section title="Sponsors">
+        <div
+          className="py-10 flex justify-between items-center"
+          data-aos="zoom-in"
+        >
+          {sponsors.map(({ id, name, logo, website }) => (
+            <a key={id} href={website}>
+              <img className="h-full" src={parseUrl(logo.url)} alt={name} />
+            </a>
+          ))}
+        </div>
+      </Section>
     </>
   )
 }
 
 export default Index
 
-export const getStaticProps = async () => {
-  const res = await getAllPosts()
+export const getStaticProps = async ({ preview = null }) => {
+  const posts = (await getAllPostsForHome(preview)) || []
+  const sponsors = await getAllSponsors()
 
   return {
     props: {
-      posts: res.posts,
+      posts,
+      sponsors,
     },
   }
 }

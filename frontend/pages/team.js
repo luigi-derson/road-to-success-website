@@ -1,8 +1,17 @@
+import { useEffect } from 'react'
+import AOS from 'aos'
+
 import Section from '@/components/Section'
 import MemberCard from '@/components/MemberCard'
 import { getAllMembers } from '@/lib/api'
 
 const about = ({ members }) => {
+  useEffect(() => {
+    AOS.init({
+      duration: 1000,
+      once: true,
+    })
+  }, [])
   return (
     <div>
       <Section
@@ -25,18 +34,20 @@ const about = ({ members }) => {
       </Section>
 
       <Section title="Team">
-        {members.map(
-          ({ id, name, role, achievements, experience, picture }) => (
-            <MemberCard
-              key={id}
-              name={name}
-              role={role}
-              achievements={achievements}
-              experience={experience}
-              picture={picture}
-            />
-          )
-        )}
+        <div className="flex flex-wrap" data-aos="fade-up">
+          {members.map(
+            ({ id, name, role, achievements, experience, picture }) => (
+              <MemberCard
+                key={id}
+                name={name}
+                role={role}
+                achievements={achievements}
+                experience={experience}
+                picture={picture}
+              />
+            )
+          )}
+        </div>
       </Section>
     </div>
   )

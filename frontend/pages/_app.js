@@ -1,4 +1,5 @@
 import '@/styles/index.css'
+import 'aos/dist/aos.css'
 import GlobalContext from '@/components/context/GlobalContext'
 import Layout from '@/components/Layout'
 import { getLayoutContent } from '@/lib/api'
@@ -19,7 +20,6 @@ MyApp.getInitialProps = async ({ Component, ctx }) => {
     pageProps = await Component.getInitialProps(ctx)
   }
   const layoutData = await getLayoutContent()
-  console.log(layoutData)
   return { pageProps, layoutData }
 }
 

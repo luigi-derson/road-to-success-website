@@ -1,4 +1,4 @@
-import Container from '@/components/container'
+import Container from '@/components/Container'
 import MoreStories from '@/components/more-stories'
 import HeroPost from '@/components/hero-post'
 import Intro from '@/components/intro'

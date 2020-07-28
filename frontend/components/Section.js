@@ -1,7 +1,8 @@
 import { parseUrl } from '@/lib/helpers'
+import Container from './Container'
 
 const Section = ({
-  title,
+  title = '',
   children,
   sectionStyle = '',
   backgroundImage = '',
@@ -16,11 +17,11 @@ const Section = ({
       }}
     >
       {title && (
-        <h2 className="mt-4 mb-6 text-xl uppercase text-center font-display">
+        <h2 className="mt-4 mb-10 text-xl uppercase text-center font-display">
           {title}
         </h2>
       )}
-      <div className="container mx-auto px-8">{children}</div>
+      <Container>{children}</Container>
     </section>
   )
 }
