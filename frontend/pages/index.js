@@ -15,31 +15,47 @@ const Index = ({ posts, sponsors }) => {
       once: true,
     })
   }, [])
+
+  const flexRule = posts.length > 2 ? 'justify-between' : 'justify-center'
+
+  const settings = {
+    infinite: true,
+    fade: true,
+    draggable: false,
+    lazyLoad: true,
+    speed: 500,
+    slidesToShow: 1,
+    autoplay: true,
+    autoplaySpeed: 2000,
+  }
+
   return (
     <>
-      <Section
-        sectionStyle="bg-no-repeat bg-cover h-screen flex items-center justify-center"
-        backgroundImage="/uploads/73f7370c_b858_48ad_bedb_a60ca09d11ca_dec130bdbd.jpeg"
-      >
-        <div className="h-full text-center align-middle font-display uppercase">
-          <h1 className="text-7xl font-bold">Road To Success</h1>
-          <h2 className="text-xl">Official Website</h2>
-        </div>
-      </Section>
-      <Section title="Latest News">
-        <div className="flex justify-between flex-wrap" data-aos="fade-up">
-          {posts.map(({ id, image, slug, title, excerpt, date }) => (
-            <BlogCard
-              key={id}
-              slug={slug}
-              image={image}
-              title={title}
-              excerpt={excerpt}
-              date={date}
-            />
-          ))}
-        </div>
-      </Section>
+      <div data-aos="fade" data-aos-duration="2500">
+        <Section
+          sectionStyle="bg-no-repeat bg-cover h-screen flex items-center justify-center"
+          backgroundImage="/uploads/73f7370c_b858_48ad_bedb_a60ca09d11ca_dec130bdbd.jpeg"
+        >
+          <div className="h-full text-center align-middle font-display uppercase">
+            <h1 className="text-7xl font-bold">Road To Success</h1>
+            <h2 className="text-xl">Official Website</h2>
+          </div>
+        </Section>
+        <Section title="Latest News">
+          <div className={`flex flex-wrap ${flexRule}`} data-aos="fade-up">
+            {posts.map(({ id, image, slug, title, excerpt, date }) => (
+              <BlogCard
+                key={id}
+                slug={slug}
+                image={image}
+                title={title}
+                excerpt={excerpt}
+                date={date}
+              />
+            ))}
+          </div>
+        </Section>
+      </div>
 
       <Section title="Latest Posts" sectionStyle="bg-primary">
         <InstaCard

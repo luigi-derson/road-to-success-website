@@ -16,23 +16,27 @@ const MemberCard = ({ picture, name, role, achievements, experience }) => {
           <div>{role}</div>
         </div>
 
-        <div className="mt-4">
-          <span className="text-gray-2 inline-block pb-2">
-            Sports career and greatest achievements:
-          </span>
-          <ul>
-            {achievements.map(({ id, achievement }) => (
-              <li key={id}>• {achievement}</li>
-            ))}
-          </ul>
-        </div>
+        {achievements.lenngth > 0 && (
+          <div className="mt-4">
+            <span className="text-gray-2 inline-block pb-2">
+              Sports career and greatest achievements:
+            </span>
+            <ul>
+              {achievements.map(({ id, achievement }) => (
+                <li key={id}>• {achievement}</li>
+              ))}
+            </ul>
+          </div>
+        )}
 
-        <div className="mt-4">
-          <span className="text-gray-2 inline-block pb-2">
-            Coach Experience:
-          </span>
-          <p>{experience}</p>
-        </div>
+        {experience && (
+          <div className="mt-4">
+            <span className="text-gray-2 inline-block pb-2">
+              Coach Experience:
+            </span>
+            <p>{experience}</p>
+          </div>
+        )}
       </div>
     </div>
   )

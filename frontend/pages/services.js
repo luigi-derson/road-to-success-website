@@ -6,7 +6,7 @@ import { parseUrl } from '@/lib/helpers'
 
 const services = ({ services }) => {
   return (
-    <div>
+    <div className="overflow-x-hidden">
       {services.map(({ id, name, description, image }, index) => {
         return (
           <ServiceSection

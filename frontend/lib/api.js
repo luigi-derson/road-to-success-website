@@ -19,6 +19,28 @@ async function fetchAPI(query, { variables } = {}) {
   return json.data
 }
 
+export async function getPageContent(slug) {
+  const data = await fetchAPI(
+    `
+    query PageContent($where: JSON){
+      pages(where:$where) {
+        name,
+        content
+      }
+    }
+  `,
+    {
+      variables: {
+        where: {
+          slug: slug,
+        },
+      },
+    }
+  )
+
+  return data
+}
+
 export async function getLayoutContent() {
   const { navigation } = await fetchAPI(`{
     navigation {

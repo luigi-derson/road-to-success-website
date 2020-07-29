@@ -7,15 +7,14 @@ const Section = ({
   sectionStyle = '',
   backgroundImage = '',
 }) => {
-  const imageUrl = parseUrl(backgroundImage)
+  const backgroundStyle = backgroundImage
+    ? {
+        backgroundImage: `url(${parseUrl(backgroundImage)})`,
+      }
+    : undefined
 
   return (
-    <section
-      className={`py-10 ${sectionStyle}`}
-      style={{
-        backgroundImage: `url(${imageUrl})`,
-      }}
-    >
+    <section className={`py-10 ${sectionStyle}`} style={backgroundStyle}>
       {title && (
         <h2 className="mt-4 mb-10 text-xl uppercase text-center font-display">
           {title}

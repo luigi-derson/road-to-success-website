@@ -18,6 +18,9 @@
       "type": "uid",
       "targetField": "name",
       "required": true
+    },
+    "content": {
+      "type": "richtext"
     }
   }
 }
