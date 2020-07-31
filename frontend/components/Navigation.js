@@ -5,36 +5,24 @@ import GlobalContext from './context/GlobalContext'
 import Logo from './Logo'
 
 const Navigation = () => {
-  const [open, setOpen] = useState(false)
   const { navigation } = useContext(GlobalContext)
+  const [open, setOpen] = useState(false)
+
+  const handleOpenLink = () => {
+    if (open) setOpen(!open)
+    return
+  }
 
   return (
     <header className="text-sm bg-black bg-opacity-85 font-display sticky top-0 z-50">
       <div className="container mx-auto">
-        <nav className="flex items-center justify-between">
+        <nav className="flex items-center justify-between flex-wrap">
           <Link href="/">
-            <a className="inline-block outline-none p-4 md:px-4">
+            <a className="inline-block outline-none p-4 md:py-0">
               <Logo />
             </a>
           </Link>
 
-          <ul className="hidden md:flex justify-between uppercase">
-            {navigation.pages.map(({ id, name, slug }) => {
-              if (slug === 'inicio' || slug === 'home') slug = ''
-              return (
-                <li
-                  key={id}
-                  className="hover:bg-primary transition ease-in duration-300 transform -skew-x-12 cursor-pointer"
-                >
-                  <Link href={`/${slug}`}>
-                    <a className="inline-block p-4 outline-none transform skew-x-12">
-                      {name}
-                    </a>
-                  </Link>
-                </li>
-              )
-            })}
-          </ul>
           <button
             className="md:hidden pr-4 rounded-lg focus:outline-none outline-none focus:text-primary"
             onClick={() => setOpen(!open)}
@@ -59,6 +47,45 @@ const Navigation = () => {
               )}
             </svg>
           </button>
+
+          <div
+            className={
+              open ? 'w-full z-50 h-mobile-menu relative' : 'hidden md:block'
+            }
+          >
+            <ul
+              className={`flex uppercase ${
+                open
+                  ? 'flex-col justify-center text-center h-full text-lg'
+                  : 'justify-between'
+              }`}
+            >
+              {navigation.pages.map(({ id, name, slug }) => {
+                if (slug === 'inicio' || slug === 'home') slug = ''
+                return (
+                  <li
+                    key={id}
+                    className={`hover:bg-primary transition ease-in duration-300 ${
+                      open
+                        ? 'w-full active:bg-primary'
+                        : 'transform -skew-x-12 cursor-pointer'
+                    }`}
+                    onClick={handleOpenLink}
+                  >
+                    <Link href={`/${slug}`}>
+                      <a
+                        className={`inline-block p-4 outline-none transform ${
+                          open ? 'w-full' : 'skew-x-12'
+                        }`}
+                      >
+                        {name}
+                      </a>
+                    </Link>
+                  </li>
+                )
+              })}
+            </ul>
+          </div>
         </nav>
       </div>
     </header>

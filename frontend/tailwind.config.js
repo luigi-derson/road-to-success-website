@@ -35,6 +35,7 @@ module.exports = {
       },
       height: {
         section: '600px',
+        'mobile-menu': 'calc(100vh - 60px)',
       },
       width: {
         instagram: 'calc(25% - 16px)',
