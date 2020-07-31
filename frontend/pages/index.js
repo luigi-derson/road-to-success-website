@@ -38,7 +38,7 @@ const Index = ({ posts, sponsors, instagramPosts }) => {
       <div data-aos="fade" data-aos-duration="2500">
         <Section
           sectionStyle="bg-no-repeat bg-cover bg-center h-screen flex items-center justify-center"
-          backgroundImage="/uploads/home_hero_min_3d59feae32.jpegg"
+          backgroundImage="/uploads/home_hero_min_3d59feae32.jpeg"
         >
           <div className="h-full text-center align-middle font-display uppercase">
             <h1 className="text-7xl font-bold">Road To Success</h1>
