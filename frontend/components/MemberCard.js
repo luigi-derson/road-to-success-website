@@ -16,7 +16,7 @@ const MemberCard = ({ picture, name, role, achievements, experience }) => {
           <div>{role}</div>
         </div>
 
-        {achievements.lenngth > 0 && (
+        {achievements.length > 0 && (
           <div className="mt-4">
             <span className="text-gray-2 inline-block pb-2">
               Sports career and greatest achievements:

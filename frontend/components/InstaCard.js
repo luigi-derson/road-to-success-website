@@ -1,52 +1,42 @@
-const InstaCard = ({ picture, caption, likes, comments, href }) => (
-  <a className="group inline-block" href={href}>
-    <div className="w-56 h-56 relative">
-      <img
-        className="h-full object-cover"
-        src={picture.url}
-        alt={picture.alt}
-      />
-      <div className="absolute top-0 left-0 h-full w-full bg-black opacity-0 group-hover:opacity-85 transition ease-in duration-200">
-        <div className="h-full flex flex-col items-center justify-center">
-          <p className="mb-5">{caption}</p>
-          <div className="flex items-center">
-            <span className="px-4">
-              <svg
-                className="inline-block mr-2"
-                width="21"
-                height="18"
-                viewBox="0 0 21 18"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M19.2245 9.05178C18.2344 10.903 14.113 14.3704 10.5863 16.9982C10.5257 17.0431 10.4645 17.0529 10.4228 17.0529C10.3824 17.0529 10.3206 17.0431 10.26 16.9982C6.73332 14.3704 2.61194 10.903 1.62247 9.05178C0.236305 6.45857 1.04859 3.13841 3.43335 1.65127C4.17203 1.19074 5.00842 0.947113 5.85133 0.947113C7.33651 0.947765 8.72594 1.66951 9.66264 2.92801L10.4228 3.9494L11.183 2.92801C12.121 1.66951 13.5098 0.947113 14.995 0.947113C15.8379 0.947113 16.6736 1.19074 17.4129 1.65127C19.7977 3.13841 20.6106 6.45857 19.2245 9.05178ZM17.9139 0.847448C16.9921 0.272919 15.987 -1.52588e-05 14.995 -1.52588e-05C13.2557 -1.52588e-05 11.5569 0.838982 10.4228 2.3626C9.28939 0.839632 7.59121 -1.52588e-05 5.85133 -1.52588e-05C4.85925 -1.52588e-05 3.8535 0.272919 2.93178 0.847448C0.128174 2.59645 -0.832635 6.46965 0.786733 9.49798C2.10646 11.9681 7.68045 16.2575 9.69391 17.7577C9.91017 17.9192 10.1668 18 10.4228 18C10.6795 18 10.9355 17.9192 11.1524 17.7577C13.1658 16.2575 18.7405 11.9681 20.0602 9.49798C21.6789 6.46965 20.7188 2.59645 17.9139 0.847448Z"
-                  fill="white"
-                />
-              </svg>
-              {likes}
-            </span>
-            <span className="px-4">
-              <svg
-                className="inline-block mr-2"
-                width="18"
-                height="18"
-                viewBox="0 0 18 18"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M16.0075 12.5085C15.7783 12.9599 15.7039 13.4416 15.7905 13.9023L16.3007 16.6178C16.3275 16.7592 16.2466 16.8493 16.2111 16.8813C16.1762 16.9133 16.0802 16.9849 15.9389 16.9412L13.4351 16.1734C13.2385 16.1129 13.0349 16.0832 12.8284 16.0832C12.5369 16.0832 12.2397 16.1437 11.9488 16.2635C10.4863 16.8674 8.88306 17.0151 7.30774 16.6894C4.1978 16.0465 1.73475 13.5265 1.1792 10.4195C0.706253 7.78131 1.5102 5.20191 3.38396 3.34212C5.25772 1.48174 7.84642 0.698151 10.4828 1.1903C13.4752 1.74934 15.9499 4.11699 16.6416 7.08207C17.0773 8.95466 16.8586 10.8307 16.0075 12.5085ZM17.6596 6.84472C16.8755 3.48174 14.0686 0.796463 10.6748 0.162958C7.69459 -0.394922 4.76906 0.494545 2.64749 2.59983C0.526498 4.70512 -0.384493 7.6225 0.149536 10.6039C0.780133 14.1274 3.57128 16.9843 7.09657 17.7132C8.87492 18.0809 10.6905 17.9139 12.3479 17.2298C12.5358 17.1524 12.8231 17.0797 13.1285 17.1734L15.6323 17.9407C15.7626 17.9802 15.8952 18 16.0261 18C16.3473 18 16.6596 17.8825 16.9086 17.6603C17.2577 17.3473 17.4153 16.8854 17.3281 16.4241L16.8179 13.7086C16.7626 13.4154 16.8534 13.1513 16.94 12.9814C17.9034 11.0815 18.1529 8.95932 17.6596 6.84472Z"
-                  fill="white"
-                />
-              </svg>
-              {comments}
-            </span>
+import LikeIcon from '@/components/icons'
+import CommentIcon from '@/components/icons'
+
+const InstaCard = ({ picture, caption, likes, comments, href }) => {
+  const truncateCaption = (text) => `${text.substring(0, 60)}...`
+
+  return (
+    <a
+      className="group inline-block m-2 w-full md:w-instagram h-full"
+      href={href}
+      data-aos="fade-up"
+      data-aos-once="true"
+    >
+      <div className="relative overflow-hidden pt-full">
+        <img
+          className="h-full object-cover absolute top-0"
+          src={picture}
+          alt="Instagram post"
+        />
+        <div className="absolute top-0 left-0 h-full w-full bg-black opacity-0 group-hover:opacity-85 transition ease-in duration-200">
+          <div className="h-full flex flex-col items-center justify-center">
+            <p className="mb-5 w-48 transform translate-y-40 group-hover:translate-y-0 transition ease-in duration-300">
+              {truncateCaption(caption)}
+            </p>
+            {/* <div className="flex items-center">
+              <span className="px-4">
+                <LikeIcon />
+                {likes}
+              </span>
+              <span className="px-4">
+                <CommentIcon />
+                {comments}
+              </span>
+            </div> */}
           </div>
         </div>
       </div>
-    </div>
-  </a>
-)
+    </a>
+  )
+}
 
 export default InstaCard

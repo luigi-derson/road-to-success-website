@@ -3,11 +3,18 @@ import 'aos/dist/aos.css'
 import GlobalContext from '@/components/context/GlobalContext'
 import Layout from '@/components/Layout'
 import { getLayoutContent } from '@/lib/api'
+import { useRouter } from 'next/router'
 
 function MyApp({ Component, pageProps, layoutData }) {
+  const { pathname } = useRouter()
+
+  const page =
+    layoutData.navigation.pages.find(({ slug }) => pathname.includes(slug)) ||
+    '/'
+
   return (
     <GlobalContext.Provider value={layoutData}>
-      <Layout>
+      <Layout title={page.name}>
         <Component {...pageProps} />
       </Layout>
     </GlobalContext.Provider>

@@ -1,14 +1,18 @@
 import { useEffect } from 'react'
 import AOS from 'aos'
 
-import { getAllSponsors, getAllPostsForHome } from '@/lib/api.js'
+import {
+  getAllSponsors,
+  getAllPostsForHome,
+  getInstagramPosts,
+} from '@/lib/api.js'
 
 import Section from '@/components/Section'
 import BlogCard from '@/components/BlogCard'
 import InstaCard from '@/components/InstaCard'
 import { parseUrl } from '@/lib/helpers'
 
-const Index = ({ posts, sponsors }) => {
+const Index = ({ posts, sponsors, instagramPosts }) => {
   useEffect(() => {
     AOS.init({
       duration: 1000,
@@ -33,8 +37,8 @@ const Index = ({ posts, sponsors }) => {
     <>
       <div data-aos="fade" data-aos-duration="2500">
         <Section
-          sectionStyle="bg-no-repeat bg-cover h-screen flex items-center justify-center"
-          backgroundImage="/uploads/73f7370c_b858_48ad_bedb_a60ca09d11ca_dec130bdbd.jpeg"
+          sectionStyle="bg-no-repeat bg-cover bg-center h-screen flex items-center justify-center"
+          backgroundImage="/uploads/home_hero_min_3d59feae32.jpegg"
         >
           <div className="h-full text-center align-middle font-display uppercase">
             <h1 className="text-7xl font-bold">Road To Success</h1>
@@ -58,26 +62,34 @@ const Index = ({ posts, sponsors }) => {
       </div>
 
       <Section title="Latest Posts" sectionStyle="bg-primary">
-        <InstaCard
-          href="/test/"
-          picture={{
-            url: 'http://localhost:1337/uploads/hero_image_61914d5153.png',
-            alt: 'Alt text',
-          }}
-          caption="some description"
-          likes="100"
-          comments="200"
-        />
+        <div className="flex justify-between items-center flex-wrap py-10">
+          {instagramPosts.map(({ id, media_url, caption, permalink }) => (
+            <InstaCard
+              key={id}
+              href={permalink}
+              picture={media_url}
+              caption={caption}
+              likes="100"
+              comments="200"
+            />
+          ))}
+        </div>
       </Section>
 
       <Section title="Sponsors">
-        <div
-          className="py-10 flex justify-between items-center"
-          data-aos="zoom-in"
-        >
+        <div className="py-10 flex justify-center md:justify-between items-center flex-wrap">
           {sponsors.map(({ id, name, logo, website }) => (
-            <a key={id} href={website}>
-              <img className="h-full" src={parseUrl(logo.url)} alt={name} />
+            <a
+              key={id}
+              className="inline-block w-full md:w-auto text-center"
+              href={website}
+              data-aos="zoom-in"
+            >
+              <img
+                className="inline-block h-full my-6 md:my-0"
+                src={parseUrl(logo.url)}
+                alt={name}
+              />
             </a>
           ))}
         </div>
@@ -92,10 +104,13 @@ export const getStaticProps = async ({ preview = null }) => {
   const posts = (await getAllPostsForHome(preview)) || []
   const sponsors = await getAllSponsors()
 
+  const instagramPosts = await getInstagramPosts()
+
   return {
     props: {
       posts,
       sponsors,
+      instagramPosts,
     },
   }
 }

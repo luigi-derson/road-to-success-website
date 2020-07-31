@@ -10,7 +10,6 @@ export default function PostHeader({ title, coverImage, date }) {
         <CoverImage title={title} url={coverImage.url} />
       </div>
       <div className="max-w-2xl mx-auto">
-        <div className="block md:hidden mb-6">Autor</div>
         <div className="mb-6 text-lg">
           <Date dateString={date} />
         </div>

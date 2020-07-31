@@ -16,14 +16,23 @@ const clientes = ({ drivers, teams }) => {
   return (
     <>
       <Section title="Teams">
-        <div className="flex justify-between items-center py-10">
+        <div
+          className="py-10 flex justify-center md:justify-between items-center flex-wrap"
+          data-aos="fade"
+        >
           {teams.map(({ id, name, logo }) => (
-            <img key={id} src={parseUrl(logo.url)} alt={name} />
+            <div key={id} className="inline-block w-full md:w-auto text-center">
+              <img
+                className="inline-block h-full my-10 md:my-0r"
+                src={parseUrl(logo.url)}
+                alt={name}
+              />
+            </div>
           ))}
         </div>
       </Section>
       <Section title="Drivers" sectionStyle="bg-primary">
-        <div className="flex justify-center flex-wrap" data-aos="fade-up">
+        <div className="flex justify-center flex-wrap">
           {drivers.map(({ id, name, portrait }) => (
             <DriverPortrait
               key={id}

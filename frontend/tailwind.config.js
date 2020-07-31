@@ -2,6 +2,7 @@ module.exports = {
   purge: ['./components/**/*.js', './pages/**/*.js'],
   variants: {
     opacity: ['group-hover'],
+    translate: ['group-hover'],
   },
   theme: {
     extend: {
@@ -25,11 +26,18 @@ module.exports = {
         'gray-4': '#363636',
       },
       spacing: {
-        28: '7rem',
+        '28': '7rem',
         'blog-card': '21rem',
+        '72': '18rem',
+      },
+      padding: {
+        full: '100%',
       },
       height: {
         section: '600px',
+      },
+      width: {
+        instagram: 'calc(25% - 16px)',
       },
       letterSpacing: {
         tighter: '-.04em',
