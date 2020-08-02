@@ -27,6 +27,23 @@ export async function getInstagramPosts() {
   return res?.data
 }
 
+export async function getMedia() {
+  const data = await fetchAPI(`{
+    medias {
+      id
+      title,
+      date,
+      image {
+        url,
+        width,
+        height
+      }
+    }
+  }`)
+
+  return data?.medias
+}
+
 export async function getPageContent(slug) {
   const data = await fetchAPI(
     `

@@ -84,6 +84,8 @@ const Index = ({ posts, sponsors, instagramPosts }) => {
               className="inline-block w-full md:w-auto text-center"
               href={website}
               data-aos="zoom-in"
+              target="_blank"
+              rel="noreferrer"
             >
               <img
                 className="inline-block h-full my-6 md:my-0"

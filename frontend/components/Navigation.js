@@ -88,6 +88,13 @@ const Navigation = () => {
           </div>
         </nav>
       </div>
+      {open && (
+        <style global jsx>{`
+          body {
+            overflow: hidden;
+          }
+        `}</style>
+      )}
     </header>
   )
 }

@@ -15,8 +15,8 @@ const BlogCard = ({ slug, image, title, excerpt, date }) => {
           />
           <div className="p-4">
             <span className="text-xs text-gray-2">{date}</span>
-            <h2 className="py-4 text-lg font-display">{title}</h2>
-            <p className="text-sm text-gray-2">{excerpt}</p>
+            <h2 className="py-4 text-xl md:text-lg font-display">{title}</h2>
+            <p className="text-lg md:text-sm text-gray-2">{excerpt}</p>
           </div>
         </div>
       </a>

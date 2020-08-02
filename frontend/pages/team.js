@@ -20,7 +20,7 @@ const about = ({ members }) => {
       >
         <div className="h-full pb-32 ">
           <h1 className="text-5xl font-bold font-display mb-4">Who we are</h1>
-          <p className="max-w-xl">
+          <p className="text-lg md:text-base max-w-xl">
             Road To Success is a successful coaching and management company
             founded in 2018 and currently working with outfits and drivers such
             as Van Amersfoort Racing, Juncos Racing, Drivex, Sophia Floersch,

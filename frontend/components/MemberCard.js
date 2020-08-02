@@ -10,7 +10,7 @@ const MemberCard = ({ picture, name, role, achievements, experience }) => {
         src={imageUrl}
         alt={picture.alternativeText}
       />
-      <div className="p-4 text-whiter text-sm">
+      <div className="p-4 text-whiter md:text-sm">
         <div>
           <div className="font-semibold text-white text-base">{name}</div>
           <div>{role}</div>
