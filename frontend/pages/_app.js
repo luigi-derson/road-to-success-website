@@ -1,5 +1,7 @@
 import '@/styles/index.css'
 import 'aos/dist/aos.css'
+import 'slick-carousel/slick/slick.css'
+import 'slick-carousel/slick/slick-theme.css'
 import GlobalContext from '@/components/context/GlobalContext'
 import Layout from '@/components/Layout'
 import { getLayoutContent } from '@/lib/api'

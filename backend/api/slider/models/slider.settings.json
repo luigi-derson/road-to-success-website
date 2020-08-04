@@ -1,0 +1,22 @@
+{
+  "kind": "singleType",
+  "collectionName": "sliders",
+  "info": {
+    "name": "Slider"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true
+  },
+  "attributes": {
+    "images": {
+      "collection": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images"
+      ],
+      "plugin": "upload",
+      "required": true
+    }
+  }
+}

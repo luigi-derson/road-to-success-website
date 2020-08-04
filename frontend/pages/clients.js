@@ -17,13 +17,13 @@ const clientes = ({ drivers, teams }) => {
     <>
       <Section title="Teams">
         <div
-          className="py-10 flex justify-center md:justify-between items-center flex-wrap"
+          className="py-10 flex justify-center items-center flex-wrap"
           data-aos="fade"
         >
           {teams.map(({ id, name, logo }) => (
             <div key={id} className="inline-block w-full md:w-auto text-center">
               <img
-                className="inline-block h-full my-10 md:my-0r"
+                className="inline-block h-full m-10 md:my-0r md:mx-20"
                 src={parseUrl(logo.url)}
                 alt={name}
               />

@@ -17,7 +17,7 @@ const ServiceSection = ({ backgroundImage, name, description, index }) => {
   return (
     <section className={`pb-8 text-white ${alignment}`} data-aos={animation}>
       <div
-        className="bg-no-repeat bg-cover bg-top h-64 flex items-center justify-center"
+        className="bg-no-repeat bg-cover bg-center h-72 flex items-center justify-center"
         style={{
           backgroundImage: `linear-gradient(90deg, rgba(223,0,6,0.45), rgba(0,0,0,0.45)), url(${backgroundImage})`,
         }}

@@ -13,7 +13,7 @@ const InstaCard = ({ picture, caption, likes, comments, href }) => {
     >
       <div className="relative overflow-hidden pt-full">
         <img
-          className="h-full object-cover absolute top-0"
+          className="h-full object-cover absolute top-0 transition-transform duration-300 ease-linear transform group-hover:scale-110"
           src={picture}
           alt="Instagram post"
         />

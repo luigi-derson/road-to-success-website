@@ -15,7 +15,7 @@ const about = ({ members }) => {
   return (
     <div>
       <Section
-        sectionStyle="bg-no-repeat bg-cover bg-left-bottom h-screen flex items-end"
+        sectionStyle="bg-no-repeat bg-cover h-screen flex items-end"
         backgroundImage="/uploads/team_hero_min_b1c2cb0220.jpeg"
       >
         <div className="h-full pb-32 ">

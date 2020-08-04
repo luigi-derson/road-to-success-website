@@ -25,6 +25,9 @@
     "active": {
       "type": "boolean",
       "required": true
+    },
+    "category": {
+      "type": "string"
     }
   }
 }

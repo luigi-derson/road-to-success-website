@@ -27,6 +27,20 @@ export async function getInstagramPosts() {
   return res?.data
 }
 
+export async function getSliderImages() {
+  const res = await fetchAPI(`{
+    slider {
+      images {
+        id,
+        url,
+        alternativeText
+      }
+    }
+  }`)
+
+  return res?.slider.images
+}
+
 export async function getMedia() {
   const data = await fetchAPI(`{
     medias {

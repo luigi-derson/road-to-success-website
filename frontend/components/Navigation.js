@@ -14,11 +14,11 @@ const Navigation = () => {
   }
 
   return (
-    <header className="text-sm bg-black bg-opacity-85 font-display sticky top-0 z-50">
+    <header className="text-sm bg-black bg-opacity-85 font-display sticky top-0 z-50 overflow-x-hidden">
       <div className="container mx-auto">
         <nav className="flex items-center justify-between flex-wrap">
           <Link href="/">
-            <a className="inline-block outline-none p-4 md:py-0">
+            <a className="inline-block outline-none p-4 md:py-0 w-20 md:w-24">
               <Logo />
             </a>
           </Link>
@@ -74,7 +74,7 @@ const Navigation = () => {
                   >
                     <Link href={`/${slug}`}>
                       <a
-                        className={`inline-block p-4 outline-none transform ${
+                        className={`inline-block p-4 md:p-5 outline-none transform ${
                           open ? 'w-full' : 'skew-x-12'
                         }`}
                       >

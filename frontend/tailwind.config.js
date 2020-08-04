@@ -3,6 +3,7 @@ module.exports = {
   variants: {
     opacity: ['group-hover'],
     translate: ['group-hover'],
+    scale: ['group-hover'],
   },
   theme: {
     extend: {
@@ -51,10 +52,12 @@ module.exports = {
         '6xl': '2.75rem',
         '7xl': '4.5rem',
         '8xl': '6.25rem',
+        '9xl': '7.5rem',
       },
       boxShadow: {
         small: '0 5px 10px rgba(0, 0, 0, 0.12)',
         medium: '0 8px 30px rgba(0, 0, 0, 0.12)',
+        primary: '0 0 20px rgba(255, 0, 9, 0.3);',
       },
       opacity: {
         '85': '0.85',
