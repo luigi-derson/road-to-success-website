@@ -10,3 +10,11 @@ export const solveDimension = (calc) => {
     return 3
   }
 }
+
+export const orderAlphabetically = (list) =>
+  list.sort((a, b) => a.name.localeCompare(b.name))
+
+export const orderByInteger = (list) =>
+  list[0].order
+    ? list.sort((a, b) => a.order - b.order)
+    : list.sort((a, b) => a.name.localeCompare(b.name))

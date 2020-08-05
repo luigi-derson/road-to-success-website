@@ -28,6 +28,11 @@
     },
     "category": {
       "type": "string"
+    },
+    "order": {
+      "type": "integer",
+      "required": true,
+      "unique": true
     }
   }
 }

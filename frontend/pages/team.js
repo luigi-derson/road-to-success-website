@@ -4,6 +4,7 @@ import AOS from 'aos'
 import Section from '@/components/Section'
 import MemberCard from '@/components/MemberCard'
 import { getAllMembers } from '@/lib/api'
+import { orderAlphabetically, orderByInteger } from '@/lib/helpers'
 
 const about = ({ members }) => {
   useEffect(() => {
@@ -54,10 +55,10 @@ const about = ({ members }) => {
 }
 
 export const getStaticProps = async () => {
-  const res = await getAllMembers()
+  const members = await getAllMembers()
   return {
     props: {
-      members: res.members,
+      members: orderByInteger(members),
     },
   }
 }

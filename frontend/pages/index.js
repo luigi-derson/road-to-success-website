@@ -11,7 +11,7 @@ import {
 import Section from '@/components/Section'
 import BlogCard from '@/components/BlogCard'
 import InstaCard from '@/components/InstaCard'
-import { parseUrl } from '@/lib/helpers'
+import { parseUrl, orderByInteger } from '@/lib/helpers'
 import Slider from 'react-slick'
 
 const Index = ({ posts, sponsors, instagramPosts, sliderImages }) => {
@@ -131,7 +131,7 @@ export const getStaticProps = async ({ preview = null }) => {
   return {
     props: {
       posts,
-      sponsors,
+      sponsors: orderByInteger(sponsors),
       instagramPosts,
       sliderImages,
     },

@@ -25,6 +25,11 @@
     },
     "active": {
       "type": "boolean"
+    },
+    "order": {
+      "type": "integer",
+      "required": true,
+      "unique": true
     }
   }
 }

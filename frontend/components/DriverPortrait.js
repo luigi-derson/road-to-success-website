@@ -1,5 +1,3 @@
-import React from 'react'
-
 const DriverPortrait = ({ portrait, name }) => {
   return (
     <div className="m-4 relative group" data-aos="fade-up">

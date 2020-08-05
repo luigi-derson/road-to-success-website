@@ -122,6 +122,7 @@ export async function getAllMembers() {
       id,
       name,
       role,
+      order,
       achievements {
         id,
         achievement
@@ -134,7 +135,7 @@ export async function getAllMembers() {
     }
   }`)
 
-  return data
+  return data?.members
 }
 
 export async function getAllServices() {
@@ -156,6 +157,7 @@ export async function getAllSponsors() {
   const { sponsors } = await fetchAPI(`{
     sponsors {
       id,
+      order,
       logo {
         url
       },
@@ -232,7 +234,8 @@ export async function getAllDrivers() {
     query Drivers($where: JSON){
       drivers(where: $where) {
         id,
-        name
+        name,
+        order,
         portrait {
           url
         }
@@ -257,7 +260,8 @@ export async function getAllTeams() {
     query Teams($where: JSON){
       teams(where: $where) {
         id,
-        name
+        name,
+        order,
         logo {
           url
         }

@@ -3,7 +3,7 @@ import AOS from 'aos'
 
 import Section from '@/components/Section'
 import { getAllDrivers, getAllTeams } from '@/lib/api'
-import { parseUrl } from '@/lib/helpers'
+import { parseUrl, orderByInteger } from '@/lib/helpers'
 import DriverPortrait from '@/components/DriverPortrait'
 
 const clientes = ({ drivers, teams }) => {
@@ -54,8 +54,8 @@ export const getStaticProps = async () => {
 
   return {
     props: {
-      teams,
-      drivers,
+      teams: orderByInteger(teams),
+      drivers: orderByInteger(drivers),
     },
   }
 }
