@@ -4,7 +4,7 @@ import AOS from 'aos'
 import Section from '@/components/Section'
 import MemberCard from '@/components/MemberCard'
 import { getAllMembers } from '@/lib/api'
-import { orderAlphabetically, orderByInteger } from '@/lib/helpers'
+import { orderByInteger } from '@/lib/helpers'
 
 const about = ({ members }) => {
   useEffect(() => {
