@@ -25,5 +25,6 @@ export const getStaticProps = async () => {
       name: data?.pages[0]?.name,
       content,
     },
+    revalidate: 1,
   }
 }

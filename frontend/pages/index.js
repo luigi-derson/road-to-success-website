@@ -135,5 +135,6 @@ export const getStaticProps = async ({ preview = null }) => {
       instagramPosts,
       sliderImages,
     },
+    revalidate: 1,
   }
 }

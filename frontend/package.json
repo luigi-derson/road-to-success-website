@@ -1,6 +1,7 @@
 {
   "name": "cms-strapi",
   "version": "1.0.0",
+  "license": "MIT",
   "scripts": {
     "dev": "next",
     "build": "next build",
@@ -11,7 +12,7 @@
     "classnames": "2.2.6",
     "date-fns": "2.14.0",
     "isomorphic-unfetch": "3.0.0",
-    "next": "latest",
+    "next": "^9.5.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-images": "^1.1.7",

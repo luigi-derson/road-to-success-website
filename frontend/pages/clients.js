@@ -57,5 +57,6 @@ export const getStaticProps = async () => {
       teams: orderByInteger(teams),
       drivers: orderByInteger(drivers),
     },
+    revalidate: 1,
   }
 }

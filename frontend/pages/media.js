@@ -96,5 +96,6 @@ export const getStaticProps = async () => {
     props: {
       photos: mappedPhotos,
     },
+    revalidate: 1,
   }
 }

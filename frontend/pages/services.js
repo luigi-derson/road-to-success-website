@@ -41,6 +41,7 @@ export const getStaticProps = async () => {
     props: {
       services,
     },
+    revalidate: 1,
   }
 }
 

@@ -60,6 +60,7 @@ export const getStaticProps = async () => {
     props: {
       members: orderByInteger(members),
     },
+    revalidate: 1,
   }
 }
 
