@@ -24,7 +24,7 @@ export default function Post({ post, morePosts }) {
           <PostTitle>Loading…</PostTitle>
         ) : (
           <>
-            <article>
+            <article className="mt-12">
               <Head>
                 <title>{post.title} | Road To Success</title>
                 <meta property="og:image" content={post.ogImage.url} />

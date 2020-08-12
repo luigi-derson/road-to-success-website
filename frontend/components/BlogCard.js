@@ -6,8 +6,8 @@ const BlogCard = ({ slug, image, title, excerpt, date }) => {
 
   return (
     <Link as={`/posts/${slug}`} href="/posts/[slug]">
-      <a className="group block m-4">
-        <div className="w-full h-full md:w-blog-card border border-gray-3 transition-transform transform duration-300 ease-linear hover:border-primary group-hover:scale-105">
+      <a className="group block p-4 md:w-1/2 lg:w-1/3">
+        <div className="h-full border border-gray-3 transition-transform transform duration-300 ease-linear hover:border-primary group-hover:scale-105">
           <img
             className="w-full object-cover h-48"
             src={imageUrl}

@@ -20,6 +20,7 @@ const Layout = ({ children, title = '/' }) => {
         <meta name="author" content="Luigi, luigi.prodesign@gmail.com" />
         <meta name="designer" content="Luigi Derson" />
         <meta name="copyright" content="Road To Success" />
+        <meta name="theme-color" content="#000" />
       </Head>
       <Navigation />
       <main>{children}</main>

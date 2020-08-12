@@ -27,7 +27,7 @@ const ServiceSection = ({ backgroundImage, name, description, index }) => {
         </h2>
       </div>
       <div className="relative">
-        <div className="max-w-2xl mx-auto px-4">
+        <div className="max-w-2xl mx-auto px-6 md:px-4">
           <FadeoutBars />
           <div
             className={markdownStyles['markdown']}

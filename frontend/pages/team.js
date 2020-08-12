@@ -35,7 +35,7 @@ const about = ({ members }) => {
       </Section>
 
       <Section title="Team">
-        <div className="flex flex-wrap" data-aos="fade-up">
+        <div className="flex flex-wrap first:pl-0">
           {members.map(
             ({ id, name, role, achievements, experience, picture }) => (
               <MemberCard

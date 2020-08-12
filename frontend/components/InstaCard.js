@@ -6,7 +6,7 @@ const InstaCard = ({ picture, caption, likes, comments, href }) => {
 
   return (
     <a
-      className="group inline-block m-2 w-full md:w-instagram h-full"
+      className="group inline-block p-4 w-full md:w-1/2 lg:w-1/4 h-full"
       href={href}
       data-aos="fade-up"
       data-aos-once="true"

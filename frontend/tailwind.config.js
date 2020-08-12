@@ -28,7 +28,6 @@ module.exports = {
       },
       spacing: {
         '28': '7rem',
-        'blog-card': '21rem',
         '72': '18rem',
       },
       padding: {
@@ -37,9 +36,6 @@ module.exports = {
       height: {
         section: '600px',
         'mobile-menu': 'calc(100vh - 60px)',
-      },
-      width: {
-        instagram: 'calc(25% - 16px)',
       },
       letterSpacing: {
         tighter: '-.04em',
