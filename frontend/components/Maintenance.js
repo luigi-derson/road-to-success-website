@@ -15,13 +15,12 @@ const Maintenance = ({ date, image }) => {
   const [minutes, setMinutes] = useState('00')
   const [seconds, setSeconds] = useState('00')
 
-  const eventTime = moment.tz(date, 'Europe/Madrid')
+  const eventTime = moment.tz(moment(date).subtract(1, 'h'), 'Europe/Madrid')
   const currentTime = moment.tz()
+  let duration = moment.duration(eventTime.diff(currentTime))
 
   useInterval(() => {
-    const timeLeft = moment.duration(eventTime.diff(currentTime))
-    const duration = moment.duration(timeLeft - 1000, 'milliseconds')
-    console.log(duration.asSeconds())
+    duration = moment.duration(duration - 1000, 'milliseconds')
 
     setDays(duration.days())
     setHours(duration.hours())
