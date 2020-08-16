@@ -9,11 +9,21 @@ export default function CoverImage({ title, url, slug }) {
       {slug ? (
         <Link as={`/posts/${slug}`} href="/posts/[slug]">
           <a aria-label={title}>
-            <img src={imageUrl} alt={title} />
+            <img
+              src={imageUrl}
+              alt={title}
+              className="w-full object-cover"
+              style={{ maxHeight: '600px' }}
+            />
           </a>
         </Link>
       ) : (
-        <img src={imageUrl} alt={title} />
+        <img
+          src={imageUrl}
+          alt={title}
+          className="w-full object-cover"
+          style={{ maxHeight: '600px' }}
+        />
       )}
     </div>
   )

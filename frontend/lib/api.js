@@ -280,6 +280,32 @@ export async function getAllTeams() {
   return data?.teams
 }
 
+export async function getMaintenanceStatus() {
+  const data = await fetchAPI(`{
+     maintenance {
+        active
+        available_date
+        image {
+          url
+        }
+     }
+  }`)
+
+  return data?.maintenance
+}
+
+export async function disableMaintenanceMode() {
+  await fetchAPI(`
+    mutation {
+      updateMaintenance(input: { data: { active: false } }) {
+        maintenance {
+          active
+        }
+      }
+    }
+  `)
+}
+
 export async function getPostAndMorePosts(slug, preview) {
   const data = await fetchAPI(
     `
