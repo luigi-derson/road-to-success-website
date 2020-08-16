@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { useRouter } from 'next/router'
+import Head from 'next/head'
 import moment from 'moment-timezone'
 
 import { parseUrl } from '@/lib/helpers'
@@ -34,68 +35,81 @@ const Maintenance = ({ date, image }) => {
   }, 1000)
 
   return (
-    <div className="w-screen h-screen bg-image">
-      <div className="h-full bg-black bg-opacity-50">
-        <div className="container mx-auto h-full">
-          <div className="h-full flex flex-col justify-center items-center">
-            <div className="w-16 lg:w-20 mb-8">
-              <Logo />
+    <>
+      <Head>
+        <title>Road To Success Official Website</title>
+        <meta name="description" content="Road to success motorsport" />
+        <meta name="robots" content="index,follow" />
+        <meta name="googlebot" content="index,follow" />
+        <meta name="Classification" content="Business" />
+        <meta name="author" content="Luigi, luigi.prodesign@gmail.com" />
+        <meta name="designer" content="Luigi Derson" />
+        <meta name="copyright" content="Road To Success" />
+        <meta name="theme-color" content="#000" />
+      </Head>
+      <div className="w-screen h-screen bg-image">
+        <div className="h-full bg-black bg-opacity-50">
+          <div className="container mx-auto h-full">
+            <div className="h-full flex flex-col justify-center items-center">
+              <div className="w-16 lg:w-20 mb-8">
+                <Logo />
+              </div>
+              <time
+                dateTime={date}
+                className="text-4xl md:text-8xl lg:text-9xl font-bold font-display block my-4 lg:my-10 tracking-widest text-center"
+              >
+                <div className="md:w-32 lg:w-40 mx-4 lg:mx-6 inline-block">
+                  {days}
+                  <span className="block text-xs md:text-base lg:text-base uppercase tracking-wider font-normal">
+                    Days
+                  </span>
+                </div>
+
+                <div className="md:w-32 lg:w-40 mx-4 lg:mx-6 inline-block">
+                  {hours}
+                  <span className="block text-xs md:text-base lg:text-base uppercase tracking-wider font-normal">
+                    Hours
+                  </span>
+                </div>
+
+                <div className="md:w-32 lg:w-40 mx-4 lg:mx-6 inline-block">
+                  {minutes}
+                  <span className="block text-xs md:text-base lg:text-base uppercase tracking-wider font-normal">
+                    Minutes
+                  </span>
+                </div>
+
+                <div className="md:w-32 lg:w-40 mx-4 lg:mx-6 inline-block">
+                  {seconds}
+                  <span className="block text-xs md:text-base lg:text-base uppercase tracking-wider font-normal">
+                    Seconds
+                  </span>
+                </div>
+              </time>
+
+              <h2 className="text-base mt-12 md:mt-16 lg:mt-20 md:text-lg lg:text-3xl font-display uppercase tracking-widest">
+                Coming Soon
+              </h2>
             </div>
-            <time
-              dateTime={date}
-              className="text-4xl md:text-8xl lg:text-9xl font-bold font-display block my-4 lg:my-10 tracking-widest text-center"
-            >
-              <div className="md:w-32 lg:w-40 mx-4 lg:mx-6 inline-block">
-                {days}
-                <span className="block text-xs md:text-base lg:text-base uppercase tracking-wider font-normal">
-                  Days
-                </span>
-              </div>
-
-              <div className="md:w-32 lg:w-40 mx-4 lg:mx-6 inline-block">
-                {hours}
-                <span className="block text-xs md:text-base lg:text-base uppercase tracking-wider font-normal">
-                  Hours
-                </span>
-              </div>
-
-              <div className="md:w-32 lg:w-40 mx-4 lg:mx-6 inline-block">
-                {minutes}
-                <span className="block text-xs md:text-base lg:text-base uppercase tracking-wider font-normal">
-                  Minutes
-                </span>
-              </div>
-
-              <div className="md:w-32 lg:w-40 mx-4 lg:mx-6 inline-block">
-                {seconds}
-                <span className="block text-xs md:text-base lg:text-base uppercase tracking-wider font-normal">
-                  Seconds
-                </span>
-              </div>
-            </time>
-
-            <h2 className="text-base mt-12 md:mt-16 lg:mt-20 md:text-lg lg:text-3xl font-display uppercase tracking-widest">
-              Coming Soon
-            </h2>
           </div>
         </div>
+
+        <style jsx>
+          {`
+            body {
+              background-color: #000;
+            }
+
+            .bg-image {
+              background-image: url(${parseUrl(image)});
+              background-size: cover;
+              background-repeat: no-repeat;
+              background-position: center center;
+            }
+          `}
+        </style>
       </div>
-
-      <style jsx>
-        {`
-          body {
-            background-color: #000;
-          }
-
-          .bg-image {
-            background-image: url(${parseUrl(image)});
-            background-size: cover;
-            background-repeat: no-repeat;
-            background-position: center center;
-          }
-        `}
-      </style>
-    </div>
+    </>
   )
 }
 
