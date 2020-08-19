@@ -10,7 +10,7 @@ const media = ({ photos }) => {
   const [currentImage, setCurrentImage] = useState(0)
   const [viewerIsOpen, setViewerIsOpen] = useState(false)
 
-  const openLightbox = useCallback((event, { photo, index }) => {
+  const openLightbox = useCallback((event, { _photo, index }) => {
     setCurrentImage(index)
     setViewerIsOpen(true)
   }, [])
@@ -24,8 +24,9 @@ const media = ({ photos }) => {
         onClick={(e) => onClick(e, { photo, index })}
       >
         <img
-          className="abosolute w-full h-full top-0 object-cover"
+          className="absolute w-full h-full top-0 object-cover"
           src={photo.src}
+          alt={photo.title}
         />
         <div className="opacity-0 absolute w-full h-full bg-black top-0 left-0 group-hover:opacity-85 transition-opacity duration-300 ease-in">
           <div className="flex flex-col h-full justify-end items-end">

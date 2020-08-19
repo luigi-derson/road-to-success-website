@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
 import { useRouter } from 'next/router'
+import dynamic from 'next/dynamic'
 
 import '@/styles/index.css'
 import 'aos/dist/aos.css'
@@ -8,7 +9,8 @@ import 'slick-carousel/slick/slick-theme.css'
 import GlobalContext from '@/components/context/GlobalContext'
 import Layout from '@/components/Layout'
 import { getLayoutContent, getMaintenanceStatus } from '@/lib/api'
-import Maintenance from '@/components/Maintenance'
+
+const Maintenance = dynamic(() => import('@/components/Maintenance'))
 
 function MyApp({ Component, pageProps, layoutData, maintenance }) {
   const { pathname, push } = useRouter()

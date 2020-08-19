@@ -4,7 +4,7 @@ import Head from 'next/head'
 import moment from 'moment-timezone'
 
 import { parseUrl } from '@/lib/helpers'
-import useInterval from 'hooks/useInterval'
+import useInterval from '@/hooks/useInterval'
 import Logo from './Logo'
 import { disableMaintenanceMode } from '@/lib/api'
 
