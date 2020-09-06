@@ -19,6 +19,15 @@ async function fetchAPI(query, { variables } = {}) {
   return json.data
 }
 
+const fragments = {
+  pages: `
+    fragment PagesFragment on Pages {
+      name_es
+      slug_es
+    }
+  `,
+}
+
 export async function getInstagramPosts() {
   const res = await fetch(
     `https://graph.instagram.com/17841408545268029/media?fields=id,media_url,caption,permalink&limit=4&access_token=${process.env.INSTAGRAM_TOKEN}`
@@ -63,8 +72,10 @@ export async function getPageContent(slug) {
     `
     query PageContent($where: JSON){
       pages(where:$where) {
-        name,
+        name
         content
+        name_es
+        content_es
       }
     }
   `,
@@ -77,18 +88,18 @@ export async function getPageContent(slug) {
     }
   )
 
-  return data
+  return data.pages[0]
 }
 
 export async function getLayoutContent() {
   const { navigation } = await fetchAPI(`{
-    navigation {
-      pages {
-        id,
-        name,
-        slug
+      navigation {
+        pages {
+          id,
+          name,
+          slug
+        }
       }
-    }
   }`)
 
   const { footer } = await fetchAPI(`{
@@ -285,6 +296,8 @@ export async function getMaintenanceStatus() {
      maintenance {
         active
         available_date
+        description
+        description_es
         image {
           url
         }

@@ -1,5 +1,8 @@
 import { useEffect } from 'react'
 import AOS from 'aos'
+import { useI18n } from 'next-localization'
+
+import { languages } from '../../i18n'
 
 import {
   getAllSponsors,
@@ -13,6 +16,7 @@ import BlogCard from '@/components/BlogCard'
 import InstaCard from '@/components/InstaCard'
 import { parseUrl, orderByInteger } from '@/lib/helpers'
 import Slider from 'react-slick'
+import { getLangDict } from '@/utils/language'
 
 const Index = ({ posts, sponsors, instagramPosts, sliderImages }) => {
   useEffect(() => {
@@ -21,6 +25,8 @@ const Index = ({ posts, sponsors, instagramPosts, sliderImages }) => {
       once: true,
     })
   }, [])
+
+  const { t } = useI18n()
 
   const flexRule = posts.length > 2 ? 'justify-between' : 'justify-center'
 
@@ -60,12 +66,12 @@ const Index = ({ posts, sponsors, instagramPosts, sliderImages }) => {
             Road To Success
           </h1>
           <h2 className="text-xl md:text-2xl lg:text-3xl text-shadow">
-            Official Website
+            {t('home.subtitle')}
           </h2>
         </div>
       </div>
 
-      <Section title="Latest News">
+      <Section title={t('home.blog_section_title')}>
         <div className={`flex flex-wrap ${flexRule}`} data-aos="fade-up">
           {posts.map(({ id, image, slug, title, excerpt, date }) => (
             <BlogCard
@@ -80,7 +86,10 @@ const Index = ({ posts, sponsors, instagramPosts, sliderImages }) => {
         </div>
       </Section>
 
-      <Section title="Latest Posts" sectionStyle="bg-primary">
+      <Section
+        title={t('home.instagram_section_title')}
+        sectionStyle="bg-primary"
+      >
         <div className="flex justify-between items-center flex-wrap py-10">
           {instagramPosts.map(({ id, media_url, caption, permalink }) => (
             <InstaCard
@@ -121,12 +130,21 @@ const Index = ({ posts, sponsors, instagramPosts, sliderImages }) => {
 
 export default Index
 
-export const getStaticProps = async ({ preview = null }) => {
+export const getStaticPaths = async () => {
+  return {
+    paths: languages.map((l) => ({ params: { lng: l } })),
+    fallback: false,
+  }
+}
+
+export const getStaticProps = async ({ preview = null, params }) => {
   const posts = (await getAllPostsForHome(preview)) || []
   const sponsors = await getAllSponsors()
   const sliderImages = await getSliderImages()
 
-  const instagramPosts = await getInstagramPosts()
+  const instagramPosts = (await getInstagramPosts()) || []
+
+  const { default: lngDict = {} } = await getLangDict(params.lng)
 
   return {
     props: {
@@ -134,6 +152,8 @@ export const getStaticProps = async ({ preview = null }) => {
       sponsors: orderByInteger(sponsors),
       instagramPosts,
       sliderImages,
+      lng: params.lng,
+      lngDict,
     },
     revalidate: 1,
   }

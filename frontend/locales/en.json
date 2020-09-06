@@ -1,0 +1,25 @@
+{
+  "home": {
+    "subtitle": "Official Website",
+    "blog_section_title": "Latest News",
+    "instagram_section_title": "Latest Posts"
+  },
+  "team": {
+    "title": "Who we are",
+    "description": "Road To Success is a successful coaching and management company founded in 2018 and currently working with outfits and drivers such as Van Amersfoort Racing, Juncos Racing, Drivex, Sophia Floersch, Artem Petrov, Pierre-Louis Chovet and Alessandro Famularo. Last but not least, at the end of 2019 Road To Success expanded into new markets arriving in the United States. Regalia and Franzoni are strongly focused on the American market currently working there with Juncos Racing and Petrov.",
+    "team_section_title": "Team",
+    "member_card_achievements": "Sports career and greatest achievements:",
+    "member_card_experience": "Coach experience:"
+  },
+  "drivers": {
+    "teams_section_title": "Teams",
+    "drivers_section_title": "Drivers"
+  },
+  "contact": {
+    "title": "Contact with us",
+    "description": "Don't hesitate to contact with us."
+  },
+  "blog": {
+    "more_stories": "More Stories"
+  }
+}

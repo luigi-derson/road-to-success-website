@@ -6,6 +6,9 @@ import Container from '@/components/Container'
 import { getMedia } from '@/lib/api'
 import { solveDimension } from '@/lib/helpers'
 
+import { languages } from '../../i18n'
+import { getLangDict } from '@/utils/language'
+
 const media = ({ photos }) => {
   const [currentImage, setCurrentImage] = useState(0)
   const [viewerIsOpen, setViewerIsOpen] = useState(false)
@@ -74,8 +77,16 @@ const media = ({ photos }) => {
 
 export default media
 
-export const getStaticProps = async () => {
+export const getStaticPaths = async () => {
+  return {
+    paths: languages.map((l) => ({ params: { lng: l } })),
+    fallback: false,
+  }
+}
+
+export const getStaticProps = async ({ params }) => {
   const photos = (await getMedia()) || []
+  const { default: lngDict = {} } = await getLangDict(params.lng)
 
   const mappedPhotos = photos.map(({ title, date, id, image }) => {
     const x = image.width - image.height
@@ -96,6 +107,8 @@ export const getStaticProps = async () => {
   return {
     props: {
       photos: mappedPhotos,
+      lng: params.lng,
+      lngDict,
     },
     revalidate: 1,
   }

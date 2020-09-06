@@ -1,8 +1,13 @@
-import React from 'react'
+import { useI18n } from 'next-localization'
+
 import Section from '@/components/Section'
 import { MailIcon } from '@/components/icons'
 
-const contacto = () => {
+import { languages } from '../../i18n'
+import { getLangDict } from '@/utils/language'
+
+const Contact = () => {
+  const { t } = useI18n()
   return (
     <Section>
       <div
@@ -11,9 +16,9 @@ const contacto = () => {
         }}
       >
         <h2 className="mt-4 mb-10 text-xl uppercase font-display">
-          Contact with us
+          {t('contact.title')}
         </h2>
-        <p className="py-2">Don&apos;t hesitate to contact with us.</p>
+        <p className="py-2">{t('contact.description')}</p>
         <div className="mt-5">
           <div className="flex items-center my-2">
             <a
@@ -39,4 +44,21 @@ const contacto = () => {
   )
 }
 
-export default contacto
+export const getStaticPaths = async () => {
+  return {
+    paths: languages.map((l) => ({ params: { lng: l } })),
+    fallback: false,
+  }
+}
+
+export const getStaticProps = async ({ params }) => {
+  const { default: lngDict = {} } = await getLangDict(params.lng)
+  return {
+    props: {
+      lng: params.lng,
+      lngDict,
+    },
+  }
+}
+
+export default Contact

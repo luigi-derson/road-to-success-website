@@ -4,6 +4,9 @@ import { getAllServices } from '@/lib/api'
 import markdownToHtml from '@/lib/markdownToHtml'
 import { parseUrl } from '@/lib/helpers'
 
+import { languages } from '../../i18n'
+import { getLangDict } from '@/utils/language'
+
 const services = ({ services }) => {
   return (
     <div className="overflow-x-hidden">
@@ -22,7 +25,16 @@ const services = ({ services }) => {
   )
 }
 
-export const getStaticProps = async () => {
+export const getStaticPaths = async () => {
+  return {
+    paths: languages.map((l) => ({ params: { lng: l } })),
+    fallback: false,
+  }
+}
+
+export const getStaticProps = async ({ params }) => {
+  const { default: lngDict = {} } = await getLangDict(params.lng)
+
   const services = await getAllServices().then(({ services }) =>
     Promise.all(
       services.map(async (service) => {
@@ -40,6 +52,8 @@ export const getStaticProps = async () => {
   return {
     props: {
       services,
+      lng: params.lng,
+      lngDict,
     },
     revalidate: 1,
   }

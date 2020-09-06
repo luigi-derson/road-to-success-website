@@ -1,12 +1,18 @@
 import { useEffect } from 'react'
 import AOS from 'aos'
+import { useI18n } from 'next-localization'
 
 import Section from '@/components/Section'
 import MemberCard from '@/components/MemberCard'
 import { getAllMembers } from '@/lib/api'
 import { orderByInteger } from '@/lib/helpers'
 
+import { languages } from '../../i18n'
+import { getLangDict } from '@/utils/language'
+
 const about = ({ members }) => {
+  const { t } = useI18n()
+
   useEffect(() => {
     AOS.init({
       duration: 1000,
@@ -20,21 +26,16 @@ const about = ({ members }) => {
         backgroundImage="/uploads/team_hero_min_b1c2cb0220.jpeg"
       >
         <div className="h-full pb-32 ">
-          <h1 className="text-5xl font-bold font-display mb-4">Who we are</h1>
+          <h1 className="text-5xl font-bold font-display mb-4">
+            {t('team.title')}
+          </h1>
           <p className="text-lg md:text-base max-w-xl">
-            Road To Success is a successful coaching and management company
-            founded in 2018 and currently working with outfits and drivers such
-            as Van Amersfoort Racing, Juncos Racing, Drivex, Sophia Floersch,
-            Artem Petrov, Pierre-Louis Chovet and Alessandro Famularo. Last but
-            not least, at the end of 2019 Road To Success expanded into new
-            markets arriving in the United States. Regalia and Franzoni are
-            strongly focused on the American market currently working there with
-            Juncos Racing and Petrov.
+            {t('team.description')}
           </p>
         </div>
       </Section>
 
-      <Section title="Team">
+      <Section title={t('team.team_section_title')}>
         <div className="flex flex-wrap first:pl-0">
           {members.map(
             ({ id, name, role, achievements, experience, picture }) => (
@@ -54,11 +55,22 @@ const about = ({ members }) => {
   )
 }
 
-export const getStaticProps = async () => {
+export const getStaticPaths = async () => {
+  return {
+    paths: languages.map((l) => ({ params: { lng: l } })),
+    fallback: false,
+  }
+}
+
+export const getStaticProps = async ({ params }) => {
   const members = await getAllMembers()
+  const { default: lngDict = {} } = await getLangDict(params.lng)
+
   return {
     props: {
       members: orderByInteger(members),
+      lng: params.lng,
+      lngDict,
     },
     revalidate: 1,
   }

@@ -11,6 +11,9 @@ import Head from 'next/head'
 import Meta from '@/components/old/meta'
 import markdownToHtml from '@/lib/markdownToHtml'
 
+import { languages } from '../../../i18n'
+import { getLangDict } from '@/utils/language'
+
 export default function Post({ post, morePosts }) {
   const router = useRouter()
   if (!router.isFallback && !post?.slug) {
@@ -49,6 +52,8 @@ export async function getStaticProps({ params, preview = null }) {
   const data = await getPostAndMorePosts(params.slug, preview)
   const content = await markdownToHtml(data?.posts[0]?.content || '')
 
+  const { default: lngDict = {} } = await getLangDict(params.lng)
+
   return {
     props: {
       post: {
@@ -57,6 +62,8 @@ export async function getStaticProps({ params, preview = null }) {
         content,
       },
       morePosts: data?.morePosts,
+      lng: params.lng,
+      lngDict,
     },
     revalidate: 1,
   }
@@ -64,8 +71,16 @@ export async function getStaticProps({ params, preview = null }) {
 
 export async function getStaticPaths() {
   const allPosts = await getAllPostsWithSlug()
+
+  const paths = languages.reduce((merged, l) => {
+    allPosts.forEach((p) => {
+      merged.push(`/${l}/posts/${p.slug}`)
+    })
+    return merged
+  }, [])
+
   return {
-    paths: allPosts?.map((post) => `/posts/${post.slug}`) || [],
+    paths,
     fallback: true,
   }
 }
