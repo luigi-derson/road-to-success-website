@@ -27,7 +27,7 @@ export const getStaticPaths = async () => {
 }
 
 export const getStaticProps = async ({ params }) => {
-  const page = await getPageContent('privacy-policy')
+  const page = await getPageContent({ lng: params.lng, slug: 'privacy-policy' })
   const content = await markdownToHtml(page?.content || '')
 
   const { default: lngDict = {} } = await getLangDict(params.lng)

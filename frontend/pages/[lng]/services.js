@@ -35,7 +35,7 @@ export const getStaticPaths = async () => {
 export const getStaticProps = async ({ params }) => {
   const { default: lngDict = {} } = await getLangDict(params.lng)
 
-  const services = await getAllServices().then(({ services }) =>
+  const services = await getAllServices(params.lng).then(({ services }) =>
     Promise.all(
       services.map(async (service) => {
         const content = await markdownToHtml(service.description)

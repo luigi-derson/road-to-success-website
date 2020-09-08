@@ -138,7 +138,7 @@ export const getStaticPaths = async () => {
 }
 
 export const getStaticProps = async ({ preview = null, params }) => {
-  const posts = (await getAllPostsForHome(preview)) || []
+  const posts = (await getAllPostsForHome(params.lng, preview)) || []
   const sponsors = await getAllSponsors()
   const sliderImages = await getSliderImages()
 

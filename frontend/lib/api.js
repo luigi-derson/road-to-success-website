@@ -1,3 +1,6 @@
+import queryFragments from './queryFragments'
+import parseQuery from './parseQuery'
+
 async function fetchAPI(query, { variables } = {}) {
   const res = await fetch(`${process.env.NEXT_PUBLIC_STRAPI_API_URL}/graphql`, {
     method: 'POST',
@@ -17,15 +20,6 @@ async function fetchAPI(query, { variables } = {}) {
   }
 
   return json.data
-}
-
-const fragments = {
-  pages: `
-    fragment PagesFragment on Pages {
-      name_es
-      slug_es
-    }
-  `,
 }
 
 export async function getInstagramPosts() {
@@ -67,17 +61,16 @@ export async function getMedia() {
   return data?.medias
 }
 
-export async function getPageContent(slug) {
+export async function getPageContent(params) {
+  const { slug, lng } = params
   const data = await fetchAPI(
     `
     query PageContent($where: JSON){
       pages(where:$where) {
-        name
-        content
-        name_es
-        content_es
+        ...PageContentFragment
       }
     }
+    ${queryFragments.pageContent[lng]}
   `,
     {
       variables: {
@@ -88,23 +81,26 @@ export async function getPageContent(slug) {
     }
   )
 
-  return data.pages[0]
+  const { pages } = await parseQuery(data)
+  return pages[0]
 }
 
-export async function getLayoutContent() {
-  const { navigation } = await fetchAPI(`{
+export async function getLayoutContent(lang) {
+  const navReq = await fetchAPI(`{
       navigation {
         pages {
           id,
-          name,
-          slug
+          ...PagesFragment
         }
       }
-  }`)
 
-  const { footer } = await fetchAPI(`{
+  }
+  ${queryFragments.pages[lang]}
+  `)
+
+  const footReq = await fetchAPI(`{
     footer {
-      copyright,
+      ...FooterFragment
       socials {
         id,
         name,
@@ -115,11 +111,16 @@ export async function getLayoutContent() {
       },
       pages {
         id,
-        name,
-        slug
+        ...PagesFragment
       }
     }
-  }`)
+  }
+  ${queryFragments.pages[lang]}
+  ${queryFragments.footer[lang]}
+  `)
+
+  const navigation = await parseQuery(navReq.navigation)
+  const footer = await parseQuery(footReq.footer)
 
   return {
     navigation,
@@ -127,41 +128,38 @@ export async function getLayoutContent() {
   }
 }
 
-export async function getAllMembers() {
+export async function getAllMembers(lang) {
   const data = await fetchAPI(`{
     members {
-      id,
-      name,
-      role,
-      order,
-      achievements {
-        id,
-        achievement
-      },
-      experience,
+      id
+      order
+      ...MembersFragment
       picture {
-        url,
+        url
         alternativeText
       }
     }
-  }`)
-
-  return data?.members
+  }
+  ${queryFragments.members[lang]}
+  `)
+  const { members } = await parseQuery(data)
+  return members
 }
 
-export async function getAllServices() {
+export async function getAllServices(lang) {
   const data = await fetchAPI(`{
     services {
-      id,
-      name,
+      id
       image {
         url
-      },
-      description,
+      }
+      ...ServicesFragment
     }
-  }`)
+  }
+  ${queryFragments.services[lang]}
+  `)
 
-  return data
+  return await parseQuery(data)
 }
 
 export async function getAllSponsors() {
@@ -205,6 +203,7 @@ export async function getAllPostsWithSlug() {
     {
       posts {
         slug
+        slug_es
       }
     }
   `)
@@ -212,21 +211,20 @@ export async function getAllPostsWithSlug() {
   return data?.posts
 }
 
-export async function getAllPostsForHome(preview) {
+export async function getAllPostsForHome(lang, preview) {
   const data = await fetchAPI(
     `
     query Posts($where: JSON){
       posts(sort: "date:desc", limit: 3, where: $where) {
         id,
-        title
-        slug
-        excerpt
         date
+        ...HomePostsFragment
         image {
           url
         }
       }
     }
+    ${queryFragments.homePosts[lang]}
   `,
     {
       variables: {
@@ -236,7 +234,8 @@ export async function getAllPostsForHome(preview) {
       },
     }
   )
-  return data?.posts
+  const { posts } = await parseQuery(data)
+  return posts
 }
 
 export async function getAllDrivers() {
@@ -291,20 +290,22 @@ export async function getAllTeams() {
   return data?.teams
 }
 
-export async function getMaintenanceStatus() {
+export async function getMaintenanceStatus(lang) {
   const data = await fetchAPI(`{
      maintenance {
         active
         available_date
-        description
-        description_es
+        ...MaintenanceFragment
         image {
           url
         }
      }
-  }`)
+  }
+  ${queryFragments.maintenance[lang]}
+  `)
 
-  return data?.maintenance
+  const { maintenance } = await parseQuery(data)
+  return maintenance
 }
 
 export async function disableMaintenanceMode() {
@@ -319,14 +320,13 @@ export async function disableMaintenanceMode() {
   `)
 }
 
-export async function getPostAndMorePosts(slug, preview) {
+export async function getPostAndMorePosts(params, preview) {
+  const { slug, lng } = params
+  const slugFieldName = params.lng === 'en' ? 'slug' : 'slug_es'
   const data = await fetchAPI(
     `
   query PostBySlug($where: JSON, $where_ne: JSON) {
     posts(where: $where) {
-      title
-      slug
-      content
       date
       ogImage: image{
         url
@@ -334,32 +334,33 @@ export async function getPostAndMorePosts(slug, preview) {
       image {
         url
       }
+      ...PostsFragment
     }
 
     morePosts: posts(sort: "date:desc", limit: 2, where: $where_ne) {
-      title
-      slug
-      excerpt
       date
       image {
         url
       }
+      ...PostsFragment
     }
   }
+  ${queryFragments.posts[lng]}
   `,
     {
       preview,
       variables: {
         where: {
-          slug,
+          [slugFieldName]: slug,
           ...(preview ? {} : { status: 'published' }),
         },
         where_ne: {
           ...(preview ? {} : { status: 'published' }),
-          slug_ne: slug,
+          [`${slugFieldName}_ne`]: slug,
         },
       },
     }
   )
-  return data
+
+  return await parseQuery(data)
 }

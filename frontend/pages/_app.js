@@ -10,6 +10,7 @@ import GlobalContext from '@/components/context/GlobalContext'
 import Layout from '@/components/Layout'
 
 import { getLayoutContent, getMaintenanceStatus } from '@/lib/api'
+import { configureLanguage } from '@/utils/language'
 
 const Maintenance = dynamic(() => import('@/components/Maintenance'))
 
@@ -48,9 +49,9 @@ MyApp.getInitialProps = async ({ Component, ctx }) => {
   if (Component.getInitialProps) {
     pageProps = await Component.getInitialProps(ctx)
   }
-
-  const layoutData = await getLayoutContent()
-  const maintenance = await getMaintenanceStatus()
+  const lang = configureLanguage(ctx)
+  const layoutData = await getLayoutContent(lang)
+  const maintenance = await getMaintenanceStatus(lang)
 
   return { pageProps, layoutData, maintenance }
 }

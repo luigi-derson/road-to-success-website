@@ -4,6 +4,7 @@ import { useContext, useState } from 'react'
 
 import GlobalContext from './context/GlobalContext'
 import Logo from './Logo'
+import LanguageSwitcher from './LanguageSwitcher'
 
 const Navigation = () => {
   const router = useRouter()
@@ -15,12 +16,6 @@ const Navigation = () => {
     return
   }
   const locale = router.query.lng
-
-  const changeLanguage = () => {
-    const { pathname } = router
-    const currentPage = pathname === '/[lng]' ? '/es' : `/es${pathname}`
-    router.push(currentPage)
-  }
 
   return (
     <header className="text-sm bg-black bg-opacity-85 font-display sticky top-0 z-50 overflow-x-hidden">
@@ -93,15 +88,7 @@ const Navigation = () => {
                   </li>
                 )
               })}
-              <div>
-                <button
-                  className="bg-white text-black transition-colors p-5 hover:bg-red-400"
-                  type="button"
-                  onClick={changeLanguage}
-                >
-                  ES
-                </button>
-              </div>
+              <LanguageSwitcher lang={locale} />
             </ul>
           </div>
         </nav>

@@ -1,17 +1,8 @@
 import Head from 'next/head'
-import { useEffect } from 'react'
-import { useRouter } from 'next/router'
-
 import { parseUrl } from '@/lib/helpers'
 import Logo from './Logo'
 
 const Maintenance = ({ image, description }) => {
-  const router = useRouter()
-
-  useEffect(() => {
-    router.push('/')
-  }, [])
-
   return (
     <>
       <Head>

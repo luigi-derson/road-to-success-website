@@ -63,7 +63,7 @@ export const getStaticPaths = async () => {
 }
 
 export const getStaticProps = async ({ params }) => {
-  const members = await getAllMembers()
+  const members = await getAllMembers(params.lng)
   const { default: lngDict = {} } = await getLangDict(params.lng)
 
   return {

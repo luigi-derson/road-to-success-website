@@ -27,24 +27,16 @@ export const getStaticPaths = async () => {
 }
 
 export const getStaticProps = async ({ params }) => {
-  const { lng } = params
-  const page = await getPageContent('legal-notice')
-  const { default: lngDict = {} } = await getLangDict(lng)
+  const page = await getPageContent({ lng: params.lng, slug: 'legal-notice' })
+  const content = await markdownToHtml(page?.content || '')
 
-  const parseDataByLanguage = (lang, data, key) =>
-    lang === 'en' ? data[`${key}`] : data[`${key}_es`]
-
-  const pageContent = parseDataByLanguage(lng, page, 'content')
-
-  const content = await markdownToHtml(pageContent || '')
-
-  const name = parseDataByLanguage(lng, page, 'name')
+  const { default: lngDict = {} } = await getLangDict(params.lng)
 
   return {
     props: {
-      name,
+      name: page?.name,
       content,
-      lng,
+      lng: params.lng,
       lngDict,
     },
     revalidate: 1,

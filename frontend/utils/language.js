@@ -14,13 +14,11 @@ export const getLanguage = (lang = 'en') => {
 }
 
 export const configureLanguage = (ctx) => {
-  const { req } = ctx
+  const { query } = ctx
 
-  const language = req
-    ? req.headers['accept-language']
-    : window.navigator.language
+  // const language = req ? req.headers['accept-language'] : query.lng
 
-  let lang = getLanguage(language)
+  let lang = getLanguage(query.lng)
 
   return lang
 }
