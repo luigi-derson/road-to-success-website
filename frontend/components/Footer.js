@@ -22,7 +22,13 @@ const Footer = () => {
             <div className="flex items-center">
               {footer.socials.map(({ id, name, url, logo }) => {
                 return (
-                  <a key={id} href={url} className="px-3">
+                  <a
+                    key={id}
+                    href={url}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="px-3"
+                  >
                     <img
                       src={process.env.NEXT_PUBLIC_STRAPI_API_URL + logo.url}
                       alt={name}
