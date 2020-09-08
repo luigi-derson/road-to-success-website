@@ -28,6 +28,14 @@
       ],
       "plugin": "upload",
       "required": false
+    },
+    "description": {
+      "type": "text",
+      "required": true
+    },
+    "description_es": {
+      "type": "text",
+      "required": true
     }
   }
 }

@@ -21,6 +21,18 @@
     },
     "content": {
       "type": "richtext"
+    },
+    "name_es": {
+      "type": "string",
+      "unique": true,
+      "required": true
+    },
+    "content_es": {
+      "type": "richtext"
+    },
+    "slug_es": {
+      "type": "uid",
+      "targetField": "name_es"
     }
   }
 }

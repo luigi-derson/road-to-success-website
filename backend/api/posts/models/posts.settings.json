@@ -53,6 +53,23 @@
         "draft"
       ],
       "required": true
+    },
+    "title_es": {
+      "type": "string",
+      "required": true
+    },
+    "content_es": {
+      "type": "richtext",
+      "required": true
+    },
+    "excerpt_es": {
+      "type": "text",
+      "required": true,
+      "maxLength": 170
+    },
+    "slug_es": {
+      "type": "uid",
+      "targetField": "title_es"
     }
   }
 }

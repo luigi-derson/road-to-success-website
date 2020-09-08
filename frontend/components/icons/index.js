@@ -91,3 +91,52 @@ export const LogoWhite = () => (
     />
   </svg>
 )
+
+export const ESFlag = ({ ...props }) => (
+  <svg
+    width="35"
+    height="24"
+    viewBox="0 0 35 24"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    {...props}
+  >
+    <g clipPath="url(#clip0)">
+      <path d="M0 0H35V23.3011H0V0Z" fill="#C60B1E" />
+      <path d="M0 5.82528H35V17.4758H0V5.82528Z" fill="#FFC400" />
+    </g>
+    <defs>
+      <clipPath id="clip0">
+        <rect width="35" height="23.3011" fill="white" />
+      </clipPath>
+    </defs>
+  </svg>
+)
+
+export const GBFlag = ({ ...props }) => (
+  <svg
+    width="35"
+    height="23"
+    viewBox="0 0 35 23"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    {...props}
+  >
+    <g clipPath="url(#clip0)">
+      <path d="M0 0V23H35V0H0Z" fill="#00247D" />
+      <path d="M0 0L35 23L0 0ZM35 0L0 23Z" fill="black" />
+      <path d="M35 0L0 23M0 0L35 23L0 0Z" stroke="white" strokeWidth="5" />
+      <path d="M0 0L35 23L0 0ZM35 0L0 23Z" fill="black" />
+      <path d="M35 0L0 23M0 0L35 23L0 0Z" stroke="#CF142B" strokeWidth="2" />
+      <path d="M17.5 0V23V0ZM0 11.5H35Z" fill="black" />
+      <path d="M0 11.5H35M17.5 0V23V0Z" stroke="white" strokeWidth="8" />
+      <path d="M17.5 0V23V0ZM0 11.5H35Z" fill="black" />
+      <path d="M0 11.5H35M17.5 0V23V0Z" stroke="#CF142B" strokeWidth="5" />
+    </g>
+    <defs>
+      <clipPath id="clip0">
+        <rect width="35" height="23" fill="white" />
+      </clipPath>
+    </defs>
+  </svg>
+)

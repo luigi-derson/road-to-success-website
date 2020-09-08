@@ -28,6 +28,15 @@
     "description": {
       "type": "richtext",
       "required": true
+    },
+    "name_es": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "description_es": {
+      "type": "richtext",
+      "required": true
     }
   }
 }

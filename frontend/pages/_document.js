@@ -1,9 +1,15 @@
 import Document, { Html, Head, Main, NextScript } from 'next/document'
 
 export default class MyDocument extends Document {
+  static async getInitialProps(ctx) {
+    const initialProps = await Document.getInitialProps(ctx)
+
+    return { ...initialProps, lang: ctx.query.lng }
+  }
+
   render() {
     return (
-      <Html lang="en">
+      <Html lang={this.props.lang}>
         <Head>
           <link
             href="https://fonts.googleapis.com/css2?family=Oswald&display=swap"

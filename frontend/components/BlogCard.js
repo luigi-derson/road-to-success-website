@@ -1,11 +1,14 @@
 import Link from 'next/link'
+import { useRouter } from 'next/router'
 import { parseUrl } from '@/lib/helpers'
 
 const BlogCard = ({ slug, image, title, excerpt, date }) => {
+  const router = useRouter()
   const imageUrl = parseUrl(image.url)
+  const lng = router.query.lng
 
   return (
-    <Link as={`/posts/${slug}`} href="/posts/[slug]">
+    <Link as={`/${lng}/posts/${slug}`} href="/[lng]/posts/[slug]">
       <a className="group block p-4 md:w-1/2 lg:w-1/3">
         <div className="h-full border border-gray-3 transition-transform transform duration-300 ease-linear hover:border-primary group-hover:scale-105">
           <img

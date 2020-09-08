@@ -1,7 +1,8 @@
-import React from 'react'
+import { useI18n } from 'next-localization'
 import { parseUrl } from '@/lib/helpers'
 
 const MemberCard = ({ picture, name, role, achievements, experience }) => {
+  const { t } = useI18n()
   const imageUrl = parseUrl(picture.url)
   return (
     <div
@@ -23,7 +24,7 @@ const MemberCard = ({ picture, name, role, achievements, experience }) => {
           {achievements.length > 0 && (
             <div className="mt-4">
               <span className="text-gray-2 inline-block pb-2">
-                Sports career and greatest achievements:
+                {t('team.member_card_achievements')}
               </span>
               <ul>
                 {achievements.map(({ id, achievement }) => (
@@ -36,7 +37,7 @@ const MemberCard = ({ picture, name, role, achievements, experience }) => {
           {experience && (
             <div className="mt-4">
               <span className="text-gray-2 inline-block pb-2">
-                Coach Experience:
+                {t('team.member_card_experience')}
               </span>
               <p>{experience}</p>
             </div>

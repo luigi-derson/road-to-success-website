@@ -1,10 +1,13 @@
 import Link from 'next/link'
+import { useRouter } from 'next/router'
 import { useContext, useState } from 'react'
 
 import GlobalContext from './context/GlobalContext'
 import Logo from './Logo'
+import LanguageSwitcher from './LanguageSwitcher'
 
 const Navigation = () => {
+  const router = useRouter()
   const { navigation } = useContext(GlobalContext)
   const [open, setOpen] = useState(false)
 
@@ -12,12 +15,13 @@ const Navigation = () => {
     if (open) setOpen(!open)
     return
   }
+  const locale = router.query.lng
 
   return (
     <header className="text-sm bg-black bg-opacity-85 font-display sticky top-0 z-50 overflow-x-hidden">
       <div className="container mx-auto">
         <nav className="flex items-center justify-between flex-wrap">
-          <Link href="/">
+          <Link href={`/${locale}`}>
             <a className="inline-block outline-none p-4 md:py-0 w-20 md:w-24">
               <Logo />
             </a>
@@ -72,7 +76,7 @@ const Navigation = () => {
                     }`}
                     onClick={handleOpenLink}
                   >
-                    <Link href={`/${slug}`}>
+                    <Link href={`/${locale}/${slug}`}>
                       <a
                         className={`inline-block p-4 md:p-5 outline-none transform ${
                           open ? 'w-full' : 'skew-x-12'
@@ -84,6 +88,7 @@ const Navigation = () => {
                   </li>
                 )
               })}
+              <LanguageSwitcher lang={locale} />
             </ul>
           </div>
         </nav>

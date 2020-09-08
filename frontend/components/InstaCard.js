@@ -8,6 +8,8 @@ const InstaCard = ({ picture, caption, likes, comments, href }) => {
     <a
       className="group inline-block p-4 w-full md:w-1/2 lg:w-1/4 h-full"
       href={href}
+      target="_blank"
+      rel="noreferrer"
       data-aos="fade-up"
       data-aos-once="true"
     >

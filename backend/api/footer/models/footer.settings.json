@@ -18,6 +18,10 @@
     },
     "socials": {
       "collection": "social"
+    },
+    "copyright_es": {
+      "type": "text",
+      "required": true
     }
   }
 }
