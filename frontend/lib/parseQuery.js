@@ -10,11 +10,12 @@ const processVal = (val) =>
     : Array.isArray(val)
     ? val.map(renameKeys)
     : renameKeys(val)
+
 const renameKeys = (obj) =>
   Object.fromEntries(
     Object.entries(obj).map(([key, val]) => [getNewKey(key), processVal(val)])
   )
 
 export default async function parseQuery(data = {}) {
-  return renameKeys(data)
+  return await renameKeys(data)
 }

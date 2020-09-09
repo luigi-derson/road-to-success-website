@@ -85,7 +85,7 @@ export async function getPageContent(params) {
   return pages[0]
 }
 
-export async function getLayoutContent(lang) {
+export async function getLayoutContent(lang = 'en') {
   const navReq = await fetchAPI(`{
       navigation {
         pages {
@@ -119,8 +119,8 @@ export async function getLayoutContent(lang) {
   ${queryFragments.footer[lang]}
   `)
 
-  const navigation = await parseQuery(navReq.navigation)
-  const footer = await parseQuery(footReq.footer)
+  const navigation = await parseQuery(navReq?.navigation)
+  const footer = await parseQuery(footReq?.footer)
 
   return {
     navigation,
