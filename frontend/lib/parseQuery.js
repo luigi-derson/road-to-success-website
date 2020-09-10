@@ -17,5 +17,5 @@ const renameKeys = (obj) =>
   )
 
 export default async function parseQuery(data = {}) {
-  return await renameKeys(data)
+  return renameKeys(data)
 }

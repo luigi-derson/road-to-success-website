@@ -85,7 +85,7 @@ export async function getPageContent(params) {
   return pages[0]
 }
 
-export async function getLayoutContent(lang = 'en') {
+export async function getLayoutContent(lang) {
   const navReq = await fetchAPI(`{
       navigation {
         pages {
