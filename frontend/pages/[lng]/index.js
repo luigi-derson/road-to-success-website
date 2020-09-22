@@ -91,16 +91,28 @@ const Index = ({ posts, sponsors, instagramPosts, sliderImages }) => {
         sectionStyle="bg-primary"
       >
         <div className="flex justify-between items-center flex-wrap py-10">
-          {instagramPosts.map(({ id, media_url, caption, permalink }) => (
-            <InstaCard
-              key={id}
-              href={permalink}
-              picture={media_url}
-              caption={caption}
-              likes="100"
-              comments="200"
-            />
-          ))}
+          {instagramPosts.map(
+            ({
+              id,
+              media_url,
+              caption,
+              permalink,
+              thumbnail_url,
+              media_type,
+            }) => {
+              const picture = media_type === 'IMAGE' ? media_url : thumbnail_url
+              return (
+                <InstaCard
+                  key={id}
+                  href={permalink}
+                  picture={picture}
+                  caption={caption}
+                  likes="100"
+                  comments="200"
+                />
+              )
+            }
+          )}
         </div>
       </Section>
 

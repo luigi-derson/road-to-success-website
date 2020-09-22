@@ -24,7 +24,7 @@ async function fetchAPI(query, { variables } = {}) {
 
 export async function getInstagramPosts() {
   const res = await fetch(
-    `https://graph.instagram.com/17841408545268029/media?fields=id,media_url,caption,permalink&limit=4&access_token=${process.env.INSTAGRAM_TOKEN}`
+    `https://graph.instagram.com/17841408545268029/media?fields=id,media_url,media_type,thumbnail_url,caption,permalink&limit=4&access_token=${process.env.INSTAGRAM_TOKEN}`
   ).then((data) => data.json())
 
   return res?.data
