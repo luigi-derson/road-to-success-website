@@ -100,7 +100,7 @@ const Index = ({ posts, sponsors, instagramPosts, sliderImages }) => {
               thumbnail_url,
               media_type,
             }) => {
-              const picture = media_type === 'IMAGE' ? media_url : thumbnail_url
+              const picture = media_type === 'VIDEO' ? thumbnail_url : media_url
               return (
                 <InstaCard
                   key={id}
