@@ -133,6 +133,7 @@ export async function getAllMembers(lang) {
     members {
       id
       order
+      name
       ...MembersFragment
       picture {
         url
