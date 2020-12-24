@@ -37,6 +37,13 @@
     "description_es": {
       "type": "richtext",
       "required": true
+    },
+    "order": {
+      "type": "integer",
+      "unique": false,
+      "min": 0,
+      "required": true,
+      "default": 0
     }
   }
 }

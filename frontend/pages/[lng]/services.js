@@ -41,6 +41,7 @@ export const getStaticProps = async ({ params }) => {
         const content = await markdownToHtml(service.description)
         return {
           id: service.id,
+          order: service.order,
           name: service.name,
           image: service.image,
           description: content,
@@ -51,7 +52,7 @@ export const getStaticProps = async ({ params }) => {
 
   return {
     props: {
-      services,
+      services: services.sort((a, b) => a.order - b.order), // Sort by order
       lng: params.lng,
       lngDict,
     },

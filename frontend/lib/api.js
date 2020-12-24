@@ -151,6 +151,7 @@ export async function getAllServices(lang) {
   const data = await fetchAPI(`{
     services {
       id
+      order
       image {
         url
       }

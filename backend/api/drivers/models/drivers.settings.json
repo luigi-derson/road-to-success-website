@@ -31,8 +31,10 @@
     },
     "order": {
       "type": "integer",
-      "required": false,
-      "unique": true
+      "required": true,
+      "unique": false,
+      "default": 0,
+      "min": 0
     }
   }
 }
