@@ -8,4 +8,7 @@ module.exports = {
       },
     ]
   },
+  images: {
+    domains: ['admin.rtsprogram.com'],
+  },
 }

@@ -6,6 +6,9 @@ module.exports = {
     scale: ['group-hover'],
   },
   theme: {
+    objectPosition: {
+      'top-center': 'top center',
+    },
     extend: {
       fontFamily: {
         sans:
@@ -27,8 +30,8 @@ module.exports = {
         'gray-4': '#363636',
       },
       spacing: {
-        '28': '7rem',
-        '72': '18rem',
+        28: '7rem',
+        72: '18rem',
       },
       padding: {
         full: '100%',
@@ -56,7 +59,7 @@ module.exports = {
         primary: '0 0 20px rgba(255, 0, 9, 0.3);',
       },
       opacity: {
-        '85': '0.85',
+        85: '0.85',
       },
     },
   },

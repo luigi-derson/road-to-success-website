@@ -29,7 +29,7 @@ const clientes = ({ drivers, teams }) => {
           {teams.map(({ id, name, logo }) => (
             <div key={id} className="inline-block w-full md:w-auto text-center">
               <img
-                className="inline-block h-full m-10 md:my-0r md:mx-20"
+                className="inline-block h-full m-10 md:my-0r md:mx-20 w-48"
                 src={parseUrl(logo.url)}
                 alt={name}
               />
