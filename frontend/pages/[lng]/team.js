@@ -4,13 +4,15 @@ import { useI18n } from 'next-localization'
 
 import Section from '@/components/Section'
 import MemberCard from '@/components/MemberCard'
-import { getAllMembers } from '@/lib/api'
+import { getAllMembers, getPageContent } from '@/lib/api'
 import { orderByInteger } from '@/lib/helpers'
 
 import { languages } from '../../i18n'
 import { getLangDict } from '@/utils/language'
+import markdownToHtml from '@/lib/markdownToHtml'
+import markdownStyles from '@/components/markdown-styles.module.css'
 
-const about = ({ members }) => {
+const about = ({ members, content }) => {
   const { t } = useI18n()
 
   useEffect(() => {
@@ -25,13 +27,11 @@ const about = ({ members }) => {
         sectionStyle="bg-no-repeat bg-cover h-screen flex items-end bg-fixed"
         backgroundImage="/uploads/team_hero_min_b1c2cb0220.jpeg"
       >
-        <div className="h-full pb-32 ">
-          <h1 className="text-5xl font-bold font-display mb-4">
-            {t('team.title')}
-          </h1>
-          <p className="text-lg md:text-base max-w-xl">
-            {t('team.description')}
-          </p>
+        <div className="max-w-xl">
+          <div
+            className={markdownStyles['markdown']}
+            dangerouslySetInnerHTML={{ __html: content }}
+          />
         </div>
       </Section>
 
@@ -66,11 +66,15 @@ export const getStaticProps = async ({ params }) => {
   const members = await getAllMembers(params.lng)
   const { default: lngDict = {} } = await getLangDict(params.lng)
 
+  const page = await getPageContent({ lng: params.lng, slug: 'team' })
+  const content = await markdownToHtml(page?.content || '')
+
   return {
     props: {
       members: orderByInteger(members),
       lng: params.lng,
       lngDict,
+      content,
     },
     revalidate: 1,
   }
