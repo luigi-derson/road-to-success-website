@@ -18,6 +18,8 @@ import { parseUrl, orderByInteger } from '@/lib/helpers'
 import Slider from 'react-slick'
 import { getLangDict } from '@/utils/language'
 
+import Image from 'next/image'
+
 const Index = ({ posts, sponsors, instagramPosts, sliderImages }) => {
   useEffect(() => {
     AOS.init({
@@ -52,11 +54,14 @@ const Index = ({ posts, sponsors, instagramPosts, sliderImages }) => {
         <Slider {...settings}>
           {sliderImages.map(({ id, url, alternativeText }) => {
             return (
-              <img
+              <Image
                 key={id}
                 className="block h-screen object-cover"
                 src={parseUrl(url)}
                 alt={alternativeText}
+                width={1920}
+                height={1080}
+                layout="responsive"
               />
             )
           })}
