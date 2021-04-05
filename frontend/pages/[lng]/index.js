@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import AOS from 'aos'
 import { useI18n } from 'next-localization'
+import Image from 'next/image'
 
 import { languages } from '../../i18n'
 
@@ -17,8 +18,6 @@ import InstaCard from '@/components/InstaCard'
 import { parseUrl, orderByInteger } from '@/lib/helpers'
 import Slider from 'react-slick'
 import { getLangDict } from '@/utils/language'
-
-import Image from 'next/image'
 
 const Index = ({ posts, sponsors, instagramPosts, sliderImages }) => {
   useEffect(() => {
