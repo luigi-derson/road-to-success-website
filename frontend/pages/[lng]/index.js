@@ -53,15 +53,15 @@ const Index = ({ posts, sponsors, instagramPosts, sliderImages }) => {
         <Slider {...settings}>
           {sliderImages.map(({ id, url, alternativeText }) => {
             return (
-              <Image
-                key={id}
-                className="block h-screen object-cover"
-                src={parseUrl(url)}
-                alt={alternativeText}
-                width={1920}
-                height={1080}
-                layout="responsive"
-              />
+              <div key={id} className="h-screen">
+                <Image
+                  className="block"
+                  src={parseUrl(url)}
+                  alt={alternativeText}
+                  objectFit="cover"
+                  layout="fill"
+                />
+              </div>
             )
           })}
         </Slider>
